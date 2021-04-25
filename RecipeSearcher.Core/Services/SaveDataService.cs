@@ -12,7 +12,7 @@ namespace RecipeSearcher.Core.Services
     {
         public string Path { get; set; } = $"C:\\data\\Recipes";
 
-        public void SaveRecipe(LocalRecipeModel recipe)
+        public async void SaveRecipe(LocalRecipeModel recipe)
         {
             if (!Directory.Exists(Path))
             {
@@ -24,7 +24,7 @@ namespace RecipeSearcher.Core.Services
             Directory.CreateDirectory(fullDirPath);
 
             string lines = $"{recipe.Name}^{recipe.Category}^{recipe.Ingredients}^{recipe.Instructions}";
-            File.WriteAllText(fullDirPath + $"\\{recipe.Name}.txt", lines);
+            await File.WriteAllTextAsync(fullDirPath + $"\\{recipe.Name}.txt", lines);
 
             recipe.Photo.Save(fullDirPath + "\\photo.png");
         }

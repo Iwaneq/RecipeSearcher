@@ -11,8 +11,8 @@ namespace RecipeSearcher.Core.ViewModels
         public IMvxCommand<string> OpenViewModelCommand { get; set; }
 
 
-        private MvxViewModel _searchRecipesViewModel;
-        private MvxViewModel _createRecipeViewModel;
+        private readonly MvxViewModel _searchRecipesViewModel;
+        private readonly MvxViewModel _createRecipeViewModel;
         private MvxViewModel _childViewModel;
 
         public MvxViewModel ChildViewModel

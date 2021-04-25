@@ -25,7 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\..\Libraries\RecipeAppLibrary\RecipeAppLibrary.csproj" />
     <ProjectReference Include="..\RecipeLibrary\RecipeLibrary.csproj" />
     <ProjectReference Include="..\RecipeSearcher.Core\RecipeSearcher.Core.csproj" />
   </ItemGroup>

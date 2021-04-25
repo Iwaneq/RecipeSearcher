@@ -7,9 +7,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WvxStarter.Wpf.Views"
+             xmlns:converters="clr-namespace:RecipeSearcher.WPF.Converters"
              mc:Ignorable="d" FontSize="20"
              d:DesignHeight="900" d:DesignWidth="800" Foreground="White" Background="#084519" Padding="20">
     <DockPanel>
+        <DockPanel.Resources>
+            <converters:WPFImageSourceConverter x:Key="ImageSourceConverter"></converters:WPFImageSourceConverter>
+        </DockPanel.Resources>
         <StackPanel DockPanel.Dock="Top" Height="100">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -48,7 +52,7 @@
         </StackPanel>
 
         <StackPanel DockPanel.Dock="Left" Width="300" >
-            <Image x:Name="RecipePhoto" MinHeight="250" Source="{Binding Recipe.Photo, Mode=OneWayToSource}">
+            <Image x:Name="RecipePhoto" MinHeight="250" Source="{Binding Recipe.Photo, Mode=OneWayToSource, Converter={StaticResource ImageSourceConverter}}">
 
             </Image>
             <Button Click="Button_Click">
