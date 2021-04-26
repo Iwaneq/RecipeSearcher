@@ -24,8 +24,8 @@
         </StackPanel>
 
         <StackPanel Width="140" Background="#0f6e29" Height="auto">
-            <ToggleButton Style="{StaticResource NavButton}"
-                    Cursor="Hand">Recipes</ToggleButton>
+            <ToggleButton Style="{StaticResource NavButton}" x:Name="recipesListButton"
+                    Cursor="Hand" Click="navigationButton_Click" mvx:Bi.nd="Command OpenViewModelCommand" CommandParameter="LocalRecipes">Recipes</ToggleButton>
             <ToggleButton Style="{StaticResource NavButton}" x:Name="createRecipeButton"
                           Click="navigationButton_Click" Cursor="Hand" mvx:Bi.nd="Command OpenViewModelCommand" CommandParameter="CreateRecipe">Create Recipe</ToggleButton>
             <ToggleButton Style="{StaticResource NavButton}" Height="auto" x:Name="searchRecipesButton"

@@ -20,6 +20,9 @@
         <DataTemplate x:Name="createRecipeViewTemplate" DataType="{x:Type viewmodels:CreateRecipeViewModel}">
             <localviews:CreateRecipeView/>
         </DataTemplate>
+        <DataTemplate x:Name="localRecipesViewTemplate" DataType="{x:Type viewmodels:LocalRecipesViewModel}">
+            <localviews:LocalRecipesView/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         

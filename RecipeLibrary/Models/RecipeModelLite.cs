@@ -1,4 +1,6 @@
-﻿namespace RecipeLibrary.Models
+﻿using System.Drawing;
+
+namespace RecipeLibrary.Models
 {
     /// <summary>
     /// Lite version of Recipe Model
@@ -19,5 +21,12 @@
         /// ID number for meal
         /// </summary>
         public int IdMeal { get; set; }
+
+        /// <summary>
+        /// Local path of this recipe
+        /// </summary>
+        public string LocalPath { get; set; }
+
+        public Image Photo { get; set; }
     }
 }

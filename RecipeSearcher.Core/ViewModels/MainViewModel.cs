@@ -13,6 +13,7 @@ namespace RecipeSearcher.Core.ViewModels
 
         private readonly MvxViewModel _searchRecipesViewModel;
         private readonly MvxViewModel _createRecipeViewModel;
+        private readonly MvxViewModel _localRecipesViewModel;
         private MvxViewModel _childViewModel;
 
         public MvxViewModel ChildViewModel
@@ -30,6 +31,7 @@ namespace RecipeSearcher.Core.ViewModels
         {
             _searchRecipesViewModel = new SearchRecipesViewModel(this);
             _createRecipeViewModel = new CreateRecipeViewModel(messageBoxService, saveDataService);
+            _localRecipesViewModel = new LocalRecipesViewModel(saveDataService);
 
             OpenViewModelCommand = new MvxCommand<string>(OpenViewModel);
         }
@@ -43,6 +45,10 @@ namespace RecipeSearcher.Core.ViewModels
             else if (parameter == "CreateRecipe")
             {
                 ChildViewModel = _createRecipeViewModel;
+            }
+            else if(parameter == "LocalRecipes")
+            {
+                ChildViewModel = _localRecipesViewModel;
             }
         }
 

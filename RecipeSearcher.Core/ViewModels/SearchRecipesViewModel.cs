@@ -46,7 +46,6 @@ namespace RecipeSearcher.Core.ViewModels
         {
             var recipe = await RecipeProcessor.LoadRecipe(id);
 
-            //TODO - Open RecipeViewModel
             mainViewModel.OpenRecipe(recipe);
         }
 
