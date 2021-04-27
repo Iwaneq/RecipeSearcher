@@ -1,16 +1,19 @@
 ﻿<views:MvxWpfView
     xmlns:views ="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
     xmlns:mvx="clr-namespace:MvvmCross.Platforms.Wpf.Binding;assembly=MvvmCross.Platforms.Wpf"
-    x:Class="WvxStarter.Wpf.Views.RecipeView"
+    x:Class="WvxStarter.Wpf.Views.LocalRecipeView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WvxStarter.Wpf.Views"
              xmlns:converters="clr-namespace:RecipeSearcher.WPF.Converters"
-             mc:Ignorable="d" FontSize="23"
+             mc:Ignorable="d" FontSize="20"
              d:DesignHeight="1000" d:DesignWidth="800" Foreground="White"  Background="#084519" Padding="20">
     <DockPanel>
+        <DockPanel.Resources>
+            <converters:WPFImageSourceConverter x:Key="ImageSourceConverter"></converters:WPFImageSourceConverter>
+        </DockPanel.Resources>
         <StackPanel DockPanel.Dock="Top" Height="100">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -22,34 +25,22 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                
+
                 <TextBlock Grid.Row="0" Grid.Column="0">RECIPE FOR:</TextBlock>
                 <TextBlock Grid.Row="1" Grid.Column="0">CATEGORY:</TextBlock>
 
                 <TextBlock Grid.Row="0" Grid.Column="1" Margin="5,0,0,0"
-                           Text="{Binding Recipe.StrMeal}"></TextBlock>
+                           Text="{Binding Recipe.Name}"></TextBlock>
                 <TextBlock Grid.Row="1" Grid.Column="1" Margin="5,0,0,0" 
-                           Text="{Binding Recipe.StrCategory}"></TextBlock>
-            </Grid>
-        </StackPanel>
-
-        <StackPanel DockPanel.Dock="Bottom" Height="100">
-            <Grid  Margin="0,30,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="2.5*"/>
-                </Grid.ColumnDefinitions>
-
-                <TextBlock Grid.Column="0">Link for video recipe:</TextBlock>
-                <TextBlock Grid.Column="1" Margin="5,0,0,0"><Hyperlink NavigateUri="{Binding Recipe.StrYoutube}">CLICK HERE</Hyperlink></TextBlock>
+                           Text="{Binding Recipe.Category}"></TextBlock>
             </Grid>
         </StackPanel>
 
         <StackPanel DockPanel.Dock="Bottom" MinHeight="400">
             <TextBlock>How to prepare your dish:</TextBlock>
-            <TextBlock Text="{Binding Recipe.StrInstructions}"
+            <TextBlock Text="{Binding Recipe.Instructions}"
                 TextWrapping="Wrap" TextAlignment="Justify">
-                
+
             </TextBlock>
         </StackPanel>
 
@@ -57,14 +48,14 @@
 
         </StackPanel>
 
-        <Image DockPanel.Dock="Left" Width="300" Source="{Binding Recipe.StrMealThumb}">
+        <Image DockPanel.Dock="Left" Width="300" Source="{Binding Recipe.Photo, Converter={StaticResource ImageSourceConverter}}">
             
         </Image>
 
         <StackPanel DockPanel.Dock="Right" Margin="15,0,0,0">
             <TextBlock>Ingredients:</TextBlock>
-            <TextBlock TextWrapping="Wrap" Text="{Binding Ingredients}" TextAlignment="Justify">
-                
+            <TextBlock TextWrapping="Wrap" Text="{Binding Recipe.Ingredients}" TextAlignment="Justify">
+
             </TextBlock>
         </StackPanel>
     </DockPanel>

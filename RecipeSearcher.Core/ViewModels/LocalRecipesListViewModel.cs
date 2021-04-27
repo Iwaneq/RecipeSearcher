@@ -9,9 +9,10 @@ using System.Threading.Tasks;
 
 namespace RecipeSearcher.Core.ViewModels
 {
-    public class LocalRecipesViewModel : MvxViewModel
+    public class LocalRecipesListViewModel : MvxViewModel
     {
         private readonly ISaveDataService _saveDataService;
+        private readonly MainViewModel _mainViewModel;
 
         private List<RecipeModelLite> _recipes;
 
@@ -25,18 +26,26 @@ namespace RecipeSearcher.Core.ViewModels
             }
         }
 
-        public IMvxCommand LoadRecipePanelsCommand { get; set; }
+        public IMvxCommand LoadRecipeCommand { get; set; }
 
-        public LocalRecipesViewModel(ISaveDataService saveDataService)
+        public LocalRecipesListViewModel(ISaveDataService saveDataService, MainViewModel mainViewModel)
         {
             _saveDataService = saveDataService;
+            _mainViewModel = mainViewModel;
 
-            Initialize().Wait();
+            LoadRecipeCommand = new MvxAsyncCommand<RecipeModelLite>(LoadRecipe);
         }
 
         public override async Task Initialize()
         {
             Recipes = await _saveDataService.LoadRecipes();
+        }
+
+        public async Task LoadRecipe(RecipeModelLite r)
+        {
+            var recipe = await _saveDataService.LoadRecipe(r.LocalPath);
+
+            _mainViewModel.OpenRecipe(recipe);
         }
     }
 }

@@ -9,5 +9,6 @@ namespace RecipeSearcher.Core.Services
     {
         void SaveRecipe(LocalRecipeModel recipe);
         public Task<List<RecipeModelLite>> LoadRecipes();
+        public Task<LocalRecipeModel> LoadRecipe(string folderPath);
     }
 }

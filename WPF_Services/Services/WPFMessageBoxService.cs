@@ -13,5 +13,9 @@ namespace WPF_Services.Services
         {
             MessageBox.Show(message, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
+        public void ShowErrorMessageBox(string message)
+        {
+            MessageBox.Show(message, "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using MvvmCross.ViewModels;
 using RecipeLibrary.Models;
+using System.Drawing;
 
 namespace RecipeSearcher.Core.ViewModels
 {
@@ -28,14 +29,11 @@ namespace RecipeSearcher.Core.ViewModels
             set { _ingredients = value; }
         }
 
-
         public RecipeViewModel(RecipeModel recipe)
         {
             Recipe = recipe;
 
             Ingredients = Recipe.CreateIngredientsList();
         }
-
-
     }
 }

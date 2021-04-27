@@ -6,6 +6,8 @@ using System.IO;
 using System.Text;
 using RecipeLibrary.Models;
 using System.Threading.Tasks;
+using MvvmCross;
+using WPF_Services.Services;
 
 namespace RecipeSearcher.Core.Services
 {
@@ -47,13 +49,37 @@ namespace RecipeSearcher.Core.Services
 
                     recipe.StrMeal = lines[0];
                     recipe.LocalPath = folder;
-                    recipe.Photo = new Bitmap(folder+"\\photo.png");
+                    recipe.Photo = new Bitmap(folder + "\\photo.png");
 
                     output.Add(recipe);
                 }
             }
-
+            
             return output;
+        }
+
+        public async Task<LocalRecipeModel> LoadRecipe(string folderPath)
+        {
+            if (File.Exists(folderPath + "\\recipe.txt"))
+            {
+                LocalRecipeModel recipe = new LocalRecipeModel();
+
+                var recipeFile = await File.ReadAllTextAsync(folderPath + "\\recipe.txt");
+                var lines = recipeFile.Split('^');
+
+                recipe.Name = lines[0];
+                recipe.Category = lines[1];
+                recipe.Ingredients = lines[2];
+                recipe.Instructions = lines[3];
+                recipe.Photo = new Bitmap(folderPath+"\\photo.png");
+
+                return recipe;
+            }
+            else
+            {
+                Mvx.IoCProvider.Resolve<IMessageBoxService>().ShowErrorMessageBox("We found a problem with your recipe: 'recipe.txt' file has been deleted or we can't find it.");
+                return null;
+            }
         }
     }
 }

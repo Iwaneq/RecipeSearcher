@@ -31,7 +31,8 @@ namespace RecipeSearcher.Core.ViewModels
         {
             _searchRecipesViewModel = new SearchRecipesViewModel(this);
             _createRecipeViewModel = new CreateRecipeViewModel(messageBoxService, saveDataService);
-            _localRecipesViewModel = new LocalRecipesViewModel(saveDataService);
+            _localRecipesViewModel = new LocalRecipesListViewModel(saveDataService, this);
+            _localRecipesViewModel.Initialize();
 
             OpenViewModelCommand = new MvxCommand<string>(OpenViewModel);
         }
@@ -55,6 +56,11 @@ namespace RecipeSearcher.Core.ViewModels
         public void OpenRecipe(RecipeModel model)
         {
             ChildViewModel = new RecipeViewModel(model);
+        }
+
+        public void OpenRecipe(LocalRecipeModel model)
+        {
+            ChildViewModel = new LocalRecipeViewModel(model);
         }
     }
 }
