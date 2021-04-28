@@ -7,6 +7,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WvxStarter.Wpf.Views"
+             xmlns:converters="clr-namespace:RecipeSearcher.WPF.Converters"
              mc:Ignorable="d" FontSize="20"
              d:DesignHeight="450" d:DesignWidth="800" Background="#084519" Padding="20">
     <DockPanel LastChildFill="True">
@@ -23,9 +24,29 @@
             
         </Grid>
 
-        <WrapPanel Orientation="Horizontal" x:Name="RecipesWrapPanel">
-            
-        </WrapPanel>
-        
+        <ItemsControl ItemsSource="{Binding Recipes.Meals}">
+            <ItemsControl.Resources>
+                <converters:WPFImageSourceConverter x:Key="ImageSourceConverter"></converters:WPFImageSourceConverter>
+            </ItemsControl.Resources>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Background="#011f09" Width="200" Height="250" Margin="5" MouseDown="Panel_MouseDown">
+
+                        <Image Source="{Binding StrMealThumb}" Stretch="UniformToFill"
+                               Width = "200" Height = "200" Cursor="Hand" >
+
+                        </Image>
+                        <Viewbox Stretch="Uniform" Width = "200" Height = "50">
+                            <TextBlock Text="{Binding StrMeal}" Foreground="White" TextWrapping="Wrap" Padding="3"/>
+                        </Viewbox>
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel></WrapPanel>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
     </DockPanel>
 </views:MvxWpfView>

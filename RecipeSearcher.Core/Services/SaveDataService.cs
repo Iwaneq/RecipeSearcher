@@ -29,7 +29,10 @@ namespace RecipeSearcher.Core.Services
             string lines = $"{recipe.Name}^{recipe.Category}^{recipe.Ingredients}^{recipe.Instructions}";
             await File.WriteAllTextAsync(fullDirPath + "\\recipe.txt", lines);
 
-            recipe.Photo.Save(fullDirPath + "\\photo.png");
+            if(recipe.Photo != null)
+            {
+                recipe.Photo.Save(fullDirPath + "\\photo.png");
+            }
         }
 
         public async Task<List<RecipeModelLite>> LoadRecipes()
@@ -49,7 +52,11 @@ namespace RecipeSearcher.Core.Services
 
                     recipe.StrMeal = lines[0];
                     recipe.LocalPath = folder;
-                    recipe.Photo = new Bitmap(folder + "\\photo.png");
+
+                    if (File.Exists(folder + "\\photo.png"))
+                    {
+                        recipe.Photo = new Bitmap(folder + "\\photo.png");
+                    }
 
                     output.Add(recipe);
                 }

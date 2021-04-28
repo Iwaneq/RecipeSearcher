@@ -1,4 +1,5 @@
-﻿using MvvmCross.Platforms.Wpf.Views;
+﻿using MvvmCross.Commands;
+using MvvmCross.Platforms.Wpf.Views;
 using RecipeLibrary.Models;
 using RecipeSearcher.Core.ViewModels;
 using System;
@@ -17,83 +18,52 @@ namespace WvxStarter.Wpf.Views
     /// </summary>
     public partial class SearchRecipesView : MvxWpfView
     {
-        private readonly Dictionary<object, int> panels = new Dictionary<object, int>();
 
-        SearchRecipesViewModel _viewModel;
+        public IMvxAsyncCommand<RecipeModelLite> LoadRecipeCommand
+        {
+            get { return (IMvxAsyncCommand<RecipeModelLite>)GetValue(LoadRecipeCommandProperty); }
+            set { SetValue(LoadRecipeCommandProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for LoadRecipeCommand.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty LoadRecipeCommandProperty =
+            DependencyProperty.Register("LoadRecipeCommand", typeof(IMvxAsyncCommand<RecipeModelLite>), typeof(SearchRecipesView), new PropertyMetadata(null));
+
+
+
+        public IMvxAsyncCommand LoadRecipesListCommand
+        {
+            get { return (IMvxAsyncCommand)GetValue(LoadRecipesListCommandProperty); }
+            set { SetValue(LoadRecipesListCommandProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for LoadRecipesListCommand.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty LoadRecipesListCommandProperty =
+            DependencyProperty.Register("LoadRecipesListCommand", typeof(IMvxAsyncCommand), typeof(SearchRecipesView), new PropertyMetadata(null));
+
+
+
         public SearchRecipesView()
         {
             InitializeComponent();
-
-            ApiHelper.InitializeClient();
         }
 
-        private async void TextBox_KeyDown(object sender, KeyEventArgs e)
+        private void TextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
-                _viewModel = (SearchRecipesViewModel)DataContext;
-                await _viewModel.LoadRecipesCommand.ExecuteAsync();
-
-                AddPanels();
+                LoadRecipesListCommand.ExecuteAsync();
             }
         }
 
-        private void AddPanels()
+        private void Panel_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            RecipesWrapPanel.Children.Clear();
-
-            if (_viewModel.Recipes.Meals == null)
+            if (e.ChangedButton == MouseButton.Left && LoadRecipeCommand != null)
             {
-                MessageBox.Show("Recipes not found", "Not found error", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            else
-            {
-                List<Task> tasks = new List<Task>();
+                var stackPanel = (StackPanel)sender;
+                var recipe = (RecipeModelLite)stackPanel.DataContext;
 
-                foreach (RecipeModelLite r in _viewModel.Recipes.Meals)
-                {
-                    Task.Run(() => Dispatcher.Invoke(() => CreatePanel(r)));
-                }
-            }
-        }
-
-        private void CreatePanel(RecipeModelLite r)
-        {
-            StackPanel panel = new StackPanel { Width = 200, Height = 250, Background = new SolidColorBrush(Color.FromRgb(1, 31, 9)), Margin = new Thickness(5, 5, 5, 5) };
-
-            //adding an Image to the panel
-            Image image = new Image { Width = 200, Height = 200, Cursor = Cursors.Hand };
-            BitmapImage bitmap = new BitmapImage();
-
-            bitmap.BeginInit();
-            bitmap.UriSource = new Uri(r.StrMealThumb, UriKind.Absolute);
-            bitmap.EndInit();
-
-            image.Source = bitmap;
-            panel.Children.Add(image);
-
-            //adding a text to the panel
-            Viewbox nameLabel = new Viewbox { Width = 200, Height = 50, Stretch = Stretch.Uniform };
-            TextBlock name = new TextBlock { Foreground = Brushes.White, TextWrapping = TextWrapping.Wrap, Padding = new Thickness(3, 3, 3, 3) };
-            name.Text = r.StrMeal;
-
-            nameLabel.Child = name;
-            panel.Children.Add(nameLabel);
-
-            //Adding event handler and event data
-            panels.Add(panel, r.IdMeal);
-            panel.MouseDown += Panel_MouseDown;
-
-            RecipesWrapPanel.Children.Add(panel);
-        }
-
-        private async void Panel_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ChangedButton == MouseButton.Left)
-            {
-                panels.TryGetValue(sender, out int id);
-
-                await _viewModel.LoadRecipe(id.ToString());
+                LoadRecipeCommand.Execute(recipe);
             }
         }
     }

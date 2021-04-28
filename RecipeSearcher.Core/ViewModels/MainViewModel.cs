@@ -29,7 +29,7 @@ namespace RecipeSearcher.Core.ViewModels
 
         public MainViewModel(IMessageBoxService messageBoxService, ISaveDataService saveDataService)
         {
-            _searchRecipesViewModel = new SearchRecipesViewModel(this);
+            _searchRecipesViewModel = new SearchRecipesViewModel(this, messageBoxService);
             _createRecipeViewModel = new CreateRecipeViewModel(messageBoxService, saveDataService);
             _localRecipesViewModel = new LocalRecipesListViewModel(saveDataService, this);
             _localRecipesViewModel.Initialize();

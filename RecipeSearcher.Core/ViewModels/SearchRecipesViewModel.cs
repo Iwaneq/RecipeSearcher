@@ -2,7 +2,7 @@
 using MvvmCross.ViewModels;
 using System.Threading.Tasks;
 using RecipeLibrary.Models;
-
+using WPF_Services.Services;
 
 namespace RecipeSearcher.Core.ViewModels
 {
@@ -20,16 +20,20 @@ namespace RecipeSearcher.Core.ViewModels
             }
         }
 
-        private readonly MainViewModel mainViewModel;
+        private readonly MainViewModel _mainViewModel;
+        private readonly IMessageBoxService _messageBoxService;
 
 
         public IMvxAsyncCommand LoadRecipesCommand { get; set; }
-        public IMvxAsyncCommand LoadRecipeCommand { get; set; }
-        public SearchRecipesViewModel(MainViewModel main)
+        public IMvxAsyncCommand<RecipeModelLite> LoadRecipeCommand { get; set; }
+        public SearchRecipesViewModel(MainViewModel main, IMessageBoxService messageBoxService)
         {
-            mainViewModel = main;
+            _mainViewModel = main;
+            _messageBoxService = messageBoxService;
 
             LoadRecipesCommand = new MvxAsyncCommand(LoadRecipes);
+            LoadRecipeCommand = new MvxAsyncCommand<RecipeModelLite>(LoadRecipe);
+            ApiHelper.InitializeClient();
         }
 
         public SearchRecipesViewModel()
@@ -40,13 +44,17 @@ namespace RecipeSearcher.Core.ViewModels
         private async Task LoadRecipes()
         {
             Recipes = await RecipeProcessor.LoadRecipes(SearchTerms);
+            if(Recipes.Meals == null)
+            {
+                _messageBoxService.ShowInformationMessageBox($"Sorry, we can't found any recipes that match your search terms: {SearchTerms}");
+            }
         }
 
-        public async Task LoadRecipe(string id)
+        public async Task LoadRecipe(RecipeModelLite r)
         {
-            var recipe = await RecipeProcessor.LoadRecipe(id);
+            var recipe = await RecipeProcessor.LoadRecipe(r.IdMeal.ToString());
 
-            mainViewModel.OpenRecipe(recipe);
+            _mainViewModel.OpenRecipe(recipe);
         }
 
         private string _searchTerms;

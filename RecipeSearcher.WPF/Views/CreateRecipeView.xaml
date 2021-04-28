@@ -39,7 +39,7 @@
         <StackPanel DockPanel.Dock="Bottom" MinHeight="400">
             <TextBlock>How to prepare your dish:</TextBlock>
             <TextBox Text="{Binding Recipe.Instructions}"
-                TextWrapping="Wrap" TextAlignment="Justify" MinHeight="340">
+                TextWrapping="Wrap" TextAlignment="Justify" MinHeight="340" AcceptsReturn="True">
 
             </TextBox>
             <Button Width="200" Margin="5" mvx:Bi.nd="Command SaveRecipeCommand">
@@ -62,7 +62,7 @@
 
         <StackPanel DockPanel.Dock="Right" Margin="15,0,0,0">
             <TextBlock>Ingredients:</TextBlock>
-            <TextBox TextWrapping="Wrap" Text="{Binding Recipe.Ingredients}" TextAlignment="Justify" MinHeight="260">
+            <TextBox TextWrapping="Wrap" Text="{Binding Recipe.Ingredients}" TextAlignment="Justify" MinHeight="260" AcceptsReturn="True" MaxHeight="100" VerticalScrollBarVisibility="Auto">
 
             </TextBox>
         </StackPanel>

@@ -46,7 +46,7 @@ namespace WvxStarter.Wpf.Views
 
         private void StackPanel_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if(LoadRecipeCommand != null)
+            if(LoadRecipeCommand != null && e.ChangedButton == MouseButton.Left)
             {
                 var stackPanel = (StackPanel)sender;
                 var recipe = (RecipeModelLite)stackPanel.DataContext;

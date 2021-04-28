@@ -37,6 +37,7 @@ namespace RecipeSearcher.Core.ViewModels
             if (ValidateRecipe())
             {
                 _saveDataService.SaveRecipe(Recipe);
+                Recipe = new LocalRecipeModel();
             }
         }
 
