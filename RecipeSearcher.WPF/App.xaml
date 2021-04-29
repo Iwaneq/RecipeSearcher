@@ -40,6 +40,30 @@
                 </Style.Triggers>
             </Style>
 
+            <Style x:Key="GreenButton" TargetType="Button">
+                <Setter Property="Background" Value="#0f6e29" />
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="FontSize" Value="18"/>
+
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Height="auto" x:Name="Border" Padding="5,0">
+                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center">
+
+                                </ContentPresenter>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Setter TargetName="Border" Property="Background" Value="#FF063212"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
             <Style x:Key="TextBoxGreen" TargetType="TextBox">
                 <Setter Property="Background" Value="#084519" />
                 <Setter Property="TextWrapping" Value="Wrap"/>

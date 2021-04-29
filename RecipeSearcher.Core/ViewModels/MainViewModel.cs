@@ -8,6 +8,7 @@ namespace RecipeSearcher.Core.ViewModels
 {
     public class MainViewModel : MvxViewModel
     {
+        
         public IMvxCommand<string> OpenViewModelCommand { get; set; }
 
 
@@ -15,6 +16,8 @@ namespace RecipeSearcher.Core.ViewModels
         private readonly MvxViewModel _createRecipeViewModel;
         private readonly MvxViewModel _localRecipesViewModel;
         private MvxViewModel _childViewModel;
+
+        private ISaveDataService _saveDataService;
 
         public MvxViewModel ChildViewModel
         {
@@ -26,7 +29,6 @@ namespace RecipeSearcher.Core.ViewModels
             }
         }
 
-
         public MainViewModel(IMessageBoxService messageBoxService, ISaveDataService saveDataService)
         {
             _searchRecipesViewModel = new SearchRecipesViewModel(this, messageBoxService);
@@ -35,32 +37,90 @@ namespace RecipeSearcher.Core.ViewModels
             _localRecipesViewModel.Initialize();
 
             OpenViewModelCommand = new MvxCommand<string>(OpenViewModel);
+            _saveDataService = saveDataService;
         }
 
         private void OpenViewModel(string parameter)
         {
             if (parameter == "SearchRecipes")
             {
+                UpdateDownButton(DownButton.Null);
                 ChildViewModel = _searchRecipesViewModel;
             }
             else if (parameter == "CreateRecipe")
             {
+                UpdateDownButton(DownButton.Null);
                 ChildViewModel = _createRecipeViewModel;
             }
             else if(parameter == "LocalRecipes")
             {
+                UpdateDownButton(DownButton.ReloadRecipes);
                 ChildViewModel = _localRecipesViewModel;
             }
         }
 
         public void OpenRecipe(RecipeModel model)
         {
-            ChildViewModel = new RecipeViewModel(model);
+            UpdateDownButton(DownButton.Null);
+            ChildViewModel = new RecipeViewModel(model, _saveDataService);
         }
 
         public void OpenRecipe(LocalRecipeModel model)
         {
+            UpdateDownButton(DownButton.Null);
             ChildViewModel = new LocalRecipeViewModel(model);
+        }
+
+
+        /* DOWN BUTTON PROPFULL'S */
+
+        enum DownButton
+        {
+            Null = 0,
+            ReloadRecipes = 1
+        }
+
+        private string _downButtonText;
+
+        public string DownButtonText
+        {
+            get { return _downButtonText; }
+            set
+            {
+                _downButtonText = value;
+                RaisePropertyChanged(() => DownButtonText);
+            }
+        }
+
+        private IMvxCommand _downButtonCommand;
+
+        public IMvxCommand DownButtonCommand
+        {
+            get { return _downButtonCommand; }
+            set 
+            {
+                _downButtonCommand = value;
+                RaisePropertyChanged(() => DownButtonCommand);
+            }
+        }
+
+        private void UpdateDownButton(DownButton type)
+        {
+            switch (type)
+            {
+                case DownButton.Null:
+                    DownButtonText = "";
+                    break;
+                case DownButton.ReloadRecipes:
+                    DownButtonText = "Reload recipes";
+                    DownButtonCommand = new MvxCommand(ReloadRecipes);
+                    break;
+            }
+        }
+
+        private void ReloadRecipes()
+        {
+            _localRecipesViewModel.Initialize();
         }
     }
 }

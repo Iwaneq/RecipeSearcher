@@ -12,7 +12,7 @@
              mc:Ignorable="d" FontSize="20"
              d:DesignHeight="450" d:DesignWidth="800"  Foreground="White" Background="#084519" Padding="20">
     <Grid>
-        <ItemsControl ItemsSource="{Binding Recipes}" Padding="20">
+        <ItemsControl ItemsSource="{Binding Recipes}">
             <ItemsControl.Resources>
                 <converters:WPFImageSourceConverter x:Key="ImageSourceConverter"></converters:WPFImageSourceConverter>
             </ItemsControl.Resources>

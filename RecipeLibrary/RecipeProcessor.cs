@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -35,9 +37,26 @@ namespace RecipeLibrary.Models
             {
                 if (response.IsSuccessStatusCode)
                 {
-                    RecipeItemsModel recipe = await response.Content.ReadAsAsync<RecipeItemsModel>();
+                    RecipeItemsModel recipes = await response.Content.ReadAsAsync<RecipeItemsModel>();
 
-                    return recipe.Meals.First();
+                    var recipe = recipes.Meals.First();
+
+                    return recipe;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public static async Task<MemoryStream> getBitmapStream(string imgUrl)
+        {
+            using (HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync(imgUrl))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    return new MemoryStream(await response.Content.ReadAsByteArrayAsync());
                 }
                 else
                 {

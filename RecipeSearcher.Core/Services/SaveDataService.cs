@@ -8,6 +8,7 @@ using RecipeLibrary.Models;
 using System.Threading.Tasks;
 using MvvmCross;
 using WPF_Services.Services;
+using System.Drawing.Imaging;
 
 namespace RecipeSearcher.Core.Services
 {
@@ -56,6 +57,10 @@ namespace RecipeSearcher.Core.Services
                     if (File.Exists(folder + "\\photo.png"))
                     {
                         recipe.Photo = new Bitmap(folder + "\\photo.png");
+                    }
+                    else if(File.Exists(folder + "\\photo.jpg"))
+                    {
+                        recipe.Photo = new Bitmap(folder + "\\photo.jpg");
                     }
 
                     output.Add(recipe);
