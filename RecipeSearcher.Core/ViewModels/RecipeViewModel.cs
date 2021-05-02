@@ -43,19 +43,25 @@ namespace RecipeSearcher.Core.ViewModels
 
 
         private ISaveDataService _saveDataService;
+        private MainViewModel _mainViewModel;
         public IMvxCommand SaveRecipeCommand { get; set; }
 
-        public RecipeViewModel(RecipeModel recipe, ISaveDataService saveDataService)
+        public RecipeViewModel(RecipeModel recipe, ISaveDataService saveDataService, MainViewModel mainViewModel)
         {
             Recipe = recipe;
             _saveDataService = saveDataService;
             SaveRecipeCommand = new MvxCommand(SaveRecipe);
+
+            _mainViewModel = mainViewModel;
 
             Ingredients = Recipe.CreateIngredientsList();
         }
 
         private async void SaveRecipe()
         {
+            Progress<string> progress = new Progress<string>();
+            progress.ProgressChanged += ReportProgress;
+
             LocalRecipeModel recipe = new LocalRecipeModel();
 
             recipe.Name = Recipe.StrMeal;
@@ -64,7 +70,12 @@ namespace RecipeSearcher.Core.ViewModels
             recipe.Instructions = Recipe.StrInstructions;
             recipe.Photo = new Bitmap(await RecipeProcessor.getBitmapStream(Recipe.StrMealThumb));
 
-            await Task.Run(()=> _saveDataService.SaveRecipe(recipe));
+            await Task.Run(()=> _saveDataService.SaveRecipe(recipe, progress));
+        }
+
+        private void ReportProgress(object sender, string e)
+        {
+            _mainViewModel.ProgressText = e;
         }
     }
 }

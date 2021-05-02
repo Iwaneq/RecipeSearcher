@@ -3,6 +3,7 @@ using MvvmCross.ViewModels;
 using System.Threading.Tasks;
 using RecipeLibrary.Models;
 using WPF_Services.Services;
+using System;
 
 namespace RecipeSearcher.Core.ViewModels
 {
@@ -43,18 +44,39 @@ namespace RecipeSearcher.Core.ViewModels
 
         private async Task LoadRecipes()
         {
-            Recipes = await RecipeProcessor.LoadRecipes(SearchTerms);
+            Progress<string> progress = new Progress<string>();
+            progress.ProgressChanged += ReportProgress;
+
+            Recipes = await RecipeProcessor.LoadRecipes(SearchTerms, progress);
             if(Recipes.Meals == null)
             {
                 _messageBoxService.ShowInformationMessageBox($"Sorry, we can't found any recipes that match your search terms: {SearchTerms}");
             }
+
+            await ClearProgressText();
+        }
+
+        private void ReportProgress(object sender, string e)
+        {
+            _mainViewModel.ProgressText = e;
+        }
+
+        private async Task ClearProgressText()
+        {
+            await Task.Delay(8000);
+            _mainViewModel.ProgressText = "";
         }
 
         public async Task LoadRecipe(RecipeModelLite r)
         {
-            var recipe = await RecipeProcessor.LoadRecipe(r.IdMeal.ToString());
+            Progress<string> progress = new Progress<string>();
+            progress.ProgressChanged += ReportProgress;
+
+            var recipe = await RecipeProcessor.LoadRecipe(r.IdMeal.ToString(), progress);
 
             _mainViewModel.OpenRecipe(recipe);
+
+            await ClearProgressText();
         }
 
         private string _searchTerms;

@@ -9,16 +9,27 @@ namespace RecipeLibrary.Models
 {
     public class RecipeProcessor
     {
-        public static async Task<RecipeItemsModelLite> LoadRecipes(string searchTerms)
+        public static async Task<RecipeItemsModelLite> LoadRecipes(string searchTerms, IProgress<string> progress)
         {
             string url = $"https://www.themealdb.com/api/json/v1/1/search.php?s={searchTerms}";
             //string url = $"https://www.googleapis.com/books/v1/volumes/{id}";
+
+            progress.Report("Searching...");
 
             using (HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync(url))
             {
                 if (response.IsSuccessStatusCode)
                 {
                     RecipeItemsModelLite meals = await response.Content.ReadAsAsync<RecipeItemsModelLite>();
+
+                    if(meals.Meals != null)
+                    {
+                        progress.Report("Recipes loaded.");
+                    }
+                    else
+                    {
+                        progress.Report("Recipes not found.");
+                    }
 
                     return meals;
                 }
@@ -29,9 +40,11 @@ namespace RecipeLibrary.Models
             }
         }
 
-        public static async Task<RecipeModel> LoadRecipe(string id)
+        public static async Task<RecipeModel> LoadRecipe(string id, IProgress<string> progress)
         {
             string url = $"https://www.themealdb.com/api/json/v1/1/lookup.php?i={id}";
+
+            progress.Report("Loading recipe...");
 
             using (HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync(url))
             {
@@ -40,6 +53,8 @@ namespace RecipeLibrary.Models
                     RecipeItemsModel recipes = await response.Content.ReadAsAsync<RecipeItemsModel>();
 
                     var recipe = recipes.Meals.First();
+
+                    progress.Report("Recipe loaded.");
 
                     return recipe;
                 }

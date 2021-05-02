@@ -1,6 +1,7 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 using RecipeLibrary.Models;
+using RecipeSearcher.Core.ReportModels;
 using RecipeSearcher.Core.Services;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace RecipeSearcher.Core.ViewModels
         private readonly ISaveDataService _saveDataService;
         private readonly MainViewModel _mainViewModel;
 
-        private List<RecipeModelLite> _recipes;
+        private List<RecipeModelLite> _recipes = new List<RecipeModelLite>();
 
         public List<RecipeModelLite> Recipes
         {
@@ -38,9 +39,23 @@ namespace RecipeSearcher.Core.ViewModels
 
         public override async Task Initialize()
         {
-            Recipes = await _saveDataService.LoadRecipes();
+            Progress<LocalRecipesReportModel> progress = new Progress<LocalRecipesReportModel>();
+            progress.ProgressChanged += ReportProgress;
+            Recipes = await _saveDataService.LoadRecipes(progress);
+
+            await ClearProgressText();
         }
 
+        private void ReportProgress(object sender, LocalRecipesReportModel e)
+        {
+            _mainViewModel.ProgressText = $"Loading recipes - {e.LoadingPrecentage}% completed.";
+        }
+
+        private async Task ClearProgressText()
+        {
+            await Task.Delay(8000);
+            _mainViewModel.ProgressText = "";
+        }
         public async Task LoadRecipe(RecipeModelLite r)
         {
             var recipe = await _saveDataService.LoadRecipe(r.LocalPath);

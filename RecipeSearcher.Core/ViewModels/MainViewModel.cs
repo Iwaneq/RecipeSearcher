@@ -8,7 +8,20 @@ namespace RecipeSearcher.Core.ViewModels
 {
     public class MainViewModel : MvxViewModel
     {
-        
+
+        private string _progressText;
+
+        public string ProgressText
+        {
+            get { return _progressText; }
+            set 
+            {
+                _progressText = value;
+                RaisePropertyChanged(() => ProgressText);
+            }
+        }
+
+
         public IMvxCommand<string> OpenViewModelCommand { get; set; }
 
 
@@ -32,7 +45,7 @@ namespace RecipeSearcher.Core.ViewModels
         public MainViewModel(IMessageBoxService messageBoxService, ISaveDataService saveDataService)
         {
             _searchRecipesViewModel = new SearchRecipesViewModel(this, messageBoxService);
-            _createRecipeViewModel = new CreateRecipeViewModel(messageBoxService, saveDataService);
+            _createRecipeViewModel = new CreateRecipeViewModel(messageBoxService, saveDataService, this);
             _localRecipesViewModel = new LocalRecipesListViewModel(saveDataService, this);
             _localRecipesViewModel.Initialize();
 
@@ -62,7 +75,7 @@ namespace RecipeSearcher.Core.ViewModels
         public void OpenRecipe(RecipeModel model)
         {
             UpdateDownButton(DownButton.Null);
-            ChildViewModel = new RecipeViewModel(model, _saveDataService);
+            ChildViewModel = new RecipeViewModel(model, _saveDataService, this);
         }
 
         public void OpenRecipe(LocalRecipeModel model)

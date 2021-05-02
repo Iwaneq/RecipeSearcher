@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using MvvmCross;
 using WPF_Services.Services;
 using System.Drawing.Imaging;
+using RecipeSearcher.Core.ReportModels;
 
 namespace RecipeSearcher.Core.Services
 {
@@ -16,29 +17,38 @@ namespace RecipeSearcher.Core.Services
     {
         public string Path { get; set; } = $"C:\\data\\Recipes";
 
-        public async void SaveRecipe(LocalRecipeModel recipe)
+        public async void SaveRecipe(LocalRecipeModel recipe, IProgress<string> progress)
         {
+            progress.Report("Started saving...");
             if (!Directory.Exists(Path))
             {
+                progress.Report("Creating directory for recipe...");
                 Directory.CreateDirectory(Path);
             }
 
+            progress.Report("Writing paths and files...");
             string fullDirPath = Path + $"\\{recipe.Name}";
 
             Directory.CreateDirectory(fullDirPath);
 
             string lines = $"{recipe.Name}^{recipe.Category}^{recipe.Ingredients}^{recipe.Instructions}";
+
+            progress.Report("Saving recipe file...");
             await File.WriteAllTextAsync(fullDirPath + "\\recipe.txt", lines);
 
             if(recipe.Photo != null)
             {
+                progress.Report("Saving photo...");
                 recipe.Photo.Save(fullDirPath + "\\photo.png");
             }
+
+            progress.Report("Recipe saved.");
         }
 
-        public async Task<List<RecipeModelLite>> LoadRecipes()
+        public async Task<List<RecipeModelLite>> LoadRecipes(IProgress<LocalRecipesReportModel> progress)
         {
             List<RecipeModelLite> output = new List<RecipeModelLite>();
+            LocalRecipesReportModel report = new LocalRecipesReportModel();
 
             var folders = Directory.GetDirectories(Path);
 
@@ -64,6 +74,8 @@ namespace RecipeSearcher.Core.Services
                     }
 
                     output.Add(recipe);
+                    report.LoadingPrecentage = (output.Count * 100) / folders.Length;
+                    progress.Report(report);
                 }
             }
             
