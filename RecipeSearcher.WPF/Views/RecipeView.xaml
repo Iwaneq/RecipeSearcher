@@ -33,16 +33,8 @@
             </Grid>
         </StackPanel>
 
-        <StackPanel DockPanel.Dock="Bottom" Height="100">
-            <Grid  Margin="0,30,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="2.5*"/>
-                </Grid.ColumnDefinitions>
-
-                <TextBlock Grid.Column="0">Link for video recipe:</TextBlock>
-                <TextBlock Grid.Column="1" Margin="5,0,0,0"><Hyperlink NavigateUri="{Binding Recipe.StrYoutube}">CLICK HERE</Hyperlink></TextBlock>
-            </Grid>
+        <StackPanel DockPanel.Dock="Bottom">
+            <Button Width="250" mvx:Bi.nd="Command SaveRecipeCommand">SAVE THIS RECIPE</Button>
         </StackPanel>
 
         <StackPanel DockPanel.Dock="Bottom" MinHeight="400">
