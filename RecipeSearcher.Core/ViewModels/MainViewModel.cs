@@ -57,18 +57,18 @@ namespace RecipeSearcher.Core.ViewModels
         {
             if (parameter == "SearchRecipes")
             {
-                UpdateDownButton(DownButton.Null);
                 ChildViewModel = _searchRecipesViewModel;
+                UpdateDownButton(DownButton.Null);
             }
             else if (parameter == "CreateRecipe")
             {
-                UpdateDownButton(DownButton.Null);
                 ChildViewModel = _createRecipeViewModel;
+                UpdateDownButton(DownButton.Null);
             }
             else if(parameter == "LocalRecipes")
             {
-                UpdateDownButton(DownButton.ReloadRecipes);
                 ChildViewModel = _localRecipesViewModel;
+                UpdateDownButton(DownButton.ReloadRecipes);
             }
         }
 

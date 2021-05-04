@@ -39,9 +39,17 @@ namespace RecipeSearcher.Core.ViewModels
 
         public override async Task Initialize()
         {
+            Recipes.Clear();
+
             Progress<LocalRecipesReportModel> progress = new Progress<LocalRecipesReportModel>();
             progress.ProgressChanged += ReportProgress;
-            Recipes = await _saveDataService.LoadRecipes(progress);
+
+            var recipes = await _saveDataService.LoadRecipes(progress);
+
+            foreach(RecipeModelLite recipe in recipes)
+            {
+                await Task.Run(() => Recipes.Add(recipe));
+            }
 
             await ClearProgressText();
         }

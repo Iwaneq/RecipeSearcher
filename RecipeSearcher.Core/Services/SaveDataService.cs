@@ -95,7 +95,15 @@ namespace RecipeSearcher.Core.Services
                 recipe.Category = lines[1];
                 recipe.Ingredients = lines[2];
                 recipe.Instructions = lines[3];
-                recipe.Photo = new Bitmap(folderPath+"\\photo.png");
+
+                if (File.Exists(folderPath + "\\photo.png"))
+                {
+                    recipe.Photo = new Bitmap(folderPath + "\\photo.png");
+                }
+                else if (File.Exists(folderPath + "\\photo.jpg"))
+                {
+                    recipe.Photo = new Bitmap(folderPath + "\\photo.jpg");
+                }
 
                 return recipe;
             }

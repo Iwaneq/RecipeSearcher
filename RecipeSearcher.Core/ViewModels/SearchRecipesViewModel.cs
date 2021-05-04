@@ -47,7 +47,7 @@ namespace RecipeSearcher.Core.ViewModels
             Progress<string> progress = new Progress<string>();
             progress.ProgressChanged += ReportProgress;
 
-            Recipes = await RecipeProcessor.LoadRecipes(SearchTerms, progress);
+            Recipes = await Task.Run(() => RecipeProcessor.LoadRecipes(SearchTerms, progress));
             if(Recipes.Meals == null)
             {
                 _messageBoxService.ShowInformationMessageBox($"Sorry, we can't found any recipes that match your search terms: {SearchTerms}");
