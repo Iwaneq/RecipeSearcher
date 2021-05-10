@@ -44,12 +44,7 @@ namespace RecipeSearcher.Core.ViewModels
             Progress<LocalRecipesReportModel> progress = new Progress<LocalRecipesReportModel>();
             progress.ProgressChanged += ReportProgress;
 
-            var recipes = await _saveDataService.LoadRecipes(progress);
-
-            foreach(RecipeModelLite recipe in recipes)
-            {
-                await Task.Run(() => Recipes.Add(recipe));
-            }
+            Recipes = await Task.Run(() =>_saveDataService.LoadRecipes(progress));
 
             await ClearProgressText();
         }

@@ -14,6 +14,7 @@ namespace RecipeSearcher.Core
 
             Mvx.IoCProvider.RegisterType<IMessageBoxService, WPFMessageBoxService>();
             Mvx.IoCProvider.RegisterType<ISaveDataService, SaveDataService>();
+            Mvx.IoCProvider.RegisterType<IColorThemeChanger, ColorThemeChanger>();
         }
     }
 }

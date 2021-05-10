@@ -12,5 +12,7 @@ namespace RecipeSearcher.Core.Services
         void SaveRecipe(LocalRecipeModel recipe, IProgress<string> progress);
         public Task<List<RecipeModelLite>> LoadRecipes(IProgress<LocalRecipesReportModel> progress);
         public Task<LocalRecipeModel> LoadRecipe(string folderPath);
+
+        public void UpdatePath();
     }
 }

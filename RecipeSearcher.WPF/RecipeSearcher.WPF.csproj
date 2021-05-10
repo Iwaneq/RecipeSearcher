@@ -9,10 +9,14 @@
 
   <ItemGroup>
     <None Remove="img\cookie.png" />
+    <None Remove="img\settings.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="img\cookie.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\settings.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
@@ -31,10 +35,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\RecipeLibrary\RecipeLibrary.csproj" />
     <ProjectReference Include="..\RecipeSearcher.Core\RecipeSearcher.Core.csproj" />
   </ItemGroup>
@@ -44,6 +44,10 @@
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>

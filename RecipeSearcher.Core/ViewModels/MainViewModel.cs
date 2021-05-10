@@ -24,10 +24,12 @@ namespace RecipeSearcher.Core.ViewModels
 
         public IMvxCommand<string> OpenViewModelCommand { get; set; }
 
+        private bool reloadManually = AppSettings.Default.IsManuallyReloadingRecipes;
 
         private readonly MvxViewModel _searchRecipesViewModel;
         private readonly MvxViewModel _createRecipeViewModel;
         private readonly MvxViewModel _localRecipesViewModel;
+        private readonly MvxViewModel _settingsViewModel;
         private MvxViewModel _childViewModel;
 
         private ISaveDataService _saveDataService;
@@ -42,33 +44,55 @@ namespace RecipeSearcher.Core.ViewModels
             }
         }
 
-        public MainViewModel(IMessageBoxService messageBoxService, ISaveDataService saveDataService)
+        public MainViewModel(IMessageBoxService messageBoxService, ISaveDataService saveDataService, IColorThemeChanger colorThemeChanger)
         {
             _searchRecipesViewModel = new SearchRecipesViewModel(this, messageBoxService);
             _createRecipeViewModel = new CreateRecipeViewModel(messageBoxService, saveDataService, this);
             _localRecipesViewModel = new LocalRecipesListViewModel(saveDataService, this);
+            _settingsViewModel = new SettingsViewModel(saveDataService, this, colorThemeChanger);
             _localRecipesViewModel.Initialize();
 
             OpenViewModelCommand = new MvxCommand<string>(OpenViewModel);
             _saveDataService = saveDataService;
         }
 
+        public void UpdateReloadType()
+        {
+            reloadManually = AppSettings.Default.IsManuallyReloadingRecipes;
+        }
+
         private void OpenViewModel(string parameter)
         {
-            if (parameter == "SearchRecipes")
+            switch (parameter)
             {
-                ChildViewModel = _searchRecipesViewModel;
-                UpdateDownButton(DownButton.Null);
-            }
-            else if (parameter == "CreateRecipe")
-            {
-                ChildViewModel = _createRecipeViewModel;
-                UpdateDownButton(DownButton.Null);
-            }
-            else if(parameter == "LocalRecipes")
-            {
-                ChildViewModel = _localRecipesViewModel;
-                UpdateDownButton(DownButton.ReloadRecipes);
+                case "SearchRecipes":
+                    ChildViewModel = _searchRecipesViewModel;
+                    UpdateDownButton(DownButton.Null);
+                    break;
+
+                case "CreateRecipe":
+                    ChildViewModel = _createRecipeViewModel;
+                    UpdateDownButton(DownButton.Null);
+                    break;
+
+                case "LocalRecipes":
+                    if (!reloadManually)
+                    {
+                        _localRecipesViewModel.Initialize();
+                        UpdateDownButton(DownButton.Null);
+                    }
+                    else
+                    {
+                        UpdateDownButton(DownButton.ReloadRecipes);
+                    }
+                    ChildViewModel = _localRecipesViewModel;
+                    break;
+
+                case "Settings":
+                    ChildViewModel = _settingsViewModel;
+                    UpdateDownButton(DownButton.Null);
+                    break;
+
             }
         }
 

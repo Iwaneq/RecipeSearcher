@@ -15,7 +15,7 @@ namespace RecipeSearcher.Core.Services
 {
     public class SaveDataService : ISaveDataService
     {
-        public string Path { get; set; } = $"C:\\data\\Recipes";
+        public string Path { get; set; } = AppSettings.Default.SavingPath;
 
         public async void SaveRecipe(LocalRecipeModel recipe, IProgress<string> progress)
         {
@@ -112,6 +112,11 @@ namespace RecipeSearcher.Core.Services
                 Mvx.IoCProvider.Resolve<IMessageBoxService>().ShowErrorMessageBox("We found a problem with your recipe: 'recipe.txt' file has been deleted or we can't find it.");
                 return null;
             }
+        }
+
+        public void UpdatePath()
+        {
+            Path = AppSettings.Default.SavingPath;
         }
     }
 }

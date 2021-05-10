@@ -26,6 +26,9 @@
         <DataTemplate x:Name="localRecipesViewTemplate" DataType="{x:Type viewmodels:LocalRecipeViewModel}">
             <localviews:LocalRecipeView/>
         </DataTemplate>
+        <DataTemplate x:Name="settingsViewTemplate" DataType="{x:Type viewmodels:SettingsViewModel}">
+            <localviews:SettingsView ChangeThemeColorCommand="{Binding ChangeThemeColorCommand}"></localviews:SettingsView>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         

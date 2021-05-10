@@ -9,20 +9,32 @@
              xmlns:local="clr-namespace:WvxStarter.Wpf.Views"
              xmlns:viewmodels="clr-namespace:RecipeSearcher.Core.ViewModels;assembly=RecipeSearcher.Core"
              xmlns:localviews="clr-namespace:WvxStarter.Wpf.Views"
+             xmlns:core="clr-namespace:RecipeSearcher.Core;assembly=RecipeSearcher.Core"
+             xmlns:convert="clr-namespace:RecipeSearcher.WPF.Converters"
              mc:Ignorable="d" FontSize="20"
              d:DesignHeight="450" d:DesignWidth="800">
     <DockPanel Height="auto" Width="auto"
                LastChildFill="True">
+        <DockPanel.Resources>
+            <convert:WPFColorConverter x:Key="ColorConverter"></convert:WPFColorConverter>
+        </DockPanel.Resources>
         <!--TOP NAVIGATION-->
-        <StackPanel Orientation="Horizontal" Height="50" DockPanel.Dock="Top"
-                    Background="#085c1f">
+        <Grid Height="50" DockPanel.Dock="Top"
+                    Background="{Binding Source={x:Static core:AppSettings.Default}, Mode=OneWay, Path=HeaderColor, Converter={StaticResource ColorConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <Image Source="../img/cookie.png" Margin="5" Grid.Column="0"></Image>
+            <TextBlock Width="400" Foreground="white" FontWeight="Bold" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="1">Recipe Searcher</TextBlock>
+            <Button x:Name="settingsButton" Style="{StaticResource GreenButton}" Grid.Column="2" Click="settingsButton_Click" mvx:Bi.nd="Command OpenViewModelCommand" CommandParameter="Settings" Cursor="Hand">
+                <Image Source="../img/settings.png" Margin="5"/>
+            </Button>
+            
+        </Grid>
 
-            <Image Source="../img/cookie.png" Margin="5"></Image>
-            <TextBlock Width="400" Foreground="white" FontWeight="Bold" FontSize="30" VerticalAlignment="Center">Recipe Searcher</TextBlock>
-
-        </StackPanel>
-
-        <StackPanel DockPanel.Dock="Bottom" Height="40" Background="#011f09">
+        <StackPanel DockPanel.Dock="Bottom" Height="40" Background="{Binding Source={x:Static core:AppSettings.Default}, Mode=OneWay, Path=BottomPanelColor, Converter={StaticResource ColorConverter}}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="10"/>
@@ -47,7 +59,7 @@
             </Grid>
         </StackPanel>
 
-        <StackPanel Width="140" Background="#0f6e29" Height="auto">
+        <StackPanel Width="140" Background="{Binding Source={x:Static core:AppSettings.Default}, Mode=OneWay, Path=NavigationColor, Converter={StaticResource ColorConverter}}" Height="auto">
             <ToggleButton Style="{StaticResource NavButton}" x:Name="recipesListButton"
                     Cursor="Hand" Click="navigationButton_Click" mvx:Bi.nd="Command OpenViewModelCommand" CommandParameter="LocalRecipes">Recipes</ToggleButton>
             <ToggleButton Style="{StaticResource NavButton}" x:Name="createRecipeButton"
@@ -58,7 +70,7 @@
             </ToggleButton>
         </StackPanel>
 
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Background="#084519">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Background="{Binding Source={x:Static core:AppSettings.Default}, Mode=OneWay, Path=ChildViewColor, Converter={StaticResource ColorConverter}}">
             <ContentControl x:Name="currChild" Content="{Binding ChildViewModel}">
                 
             </ContentControl>

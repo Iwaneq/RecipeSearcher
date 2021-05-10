@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="RecipeSearcher.Core" GeneratedClassName="AppSettings">
+  <Profiles />
+  <Settings>
+    <Setting Name="SavingPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\data\Recipes</Value>
+    </Setting>
+    <Setting Name="IsManuallyReloadingRecipes" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="HeaderColor" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#085c1f</Value>
+    </Setting>
+    <Setting Name="NavigationColor" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#0f6e29</Value>
+    </Setting>
+    <Setting Name="BottomPanelColor" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#011f09</Value>
+    </Setting>
+    <Setting Name="ChildViewColor" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#084519</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

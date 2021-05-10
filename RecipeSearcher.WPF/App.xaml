@@ -4,14 +4,19 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:WvxStarter.Wpf"
+             xmlns:convert="clr-namespace:RecipeSearcher.WPF.Converters"
+             xmlns:core="clr-namespace:RecipeSearcher.Core;assembly=RecipeSearcher.Core"
              StartupUri="MainWindow.xaml">
 
     <Application.Resources>
         <ResourceDictionary>
+            
+            <convert:WPFColorConverter x:Key="ColorConverter"></convert:WPFColorConverter>
+            
             <Style x:Key="NavButton" TargetType="ToggleButton">
                 <Setter Property="Height" Value="50" />
                 <Setter Property="FontSize" Value="20" />
-                <Setter Property="Background" Value="#0f6e29" />
+                <Setter Property="Background" Value="{Binding Source={x:Static core:AppSettings.Default}, Mode=OneWay, Path=NavigationColor, Converter={StaticResource ColorConverter}}" />
                 <Setter Property="Foreground" Value="White"/>
                 <Setter Property="Cursor" Value="Hand"/>
 
@@ -25,10 +30,10 @@
                             </Border>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsMouseOver" Value="true">
-                                    <Setter TargetName="Border" Property="Background" Value="#FF063212"/>
+                                    <Setter TargetName="Border" Property="Background" Value="{Binding Source={x:Static core:AppSettings.Default}, Mode=OneWay, Path=BottomPanelColor, Converter={StaticResource ColorConverter}}"/>
                                 </Trigger>
                                 <Trigger Property="IsChecked" Value="True">
-                                    <Setter TargetName="Border" Property="Background" Value="#FF063212"/>
+                                    <Setter TargetName="Border" Property="Background" Value="{Binding Source={x:Static core:AppSettings.Default}, Mode=OneWay, Path=BottomPanelColor, Converter={StaticResource ColorConverter}}"/>
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -41,7 +46,7 @@
             </Style>
 
             <Style x:Key="GreenButton" TargetType="Button">
-                <Setter Property="Background" Value="#0f6e29" />
+                <Setter Property="Background" Value="{Binding Source={x:Static core:AppSettings.Default}, Mode=OneWay, Path=NavigationColor, Converter={StaticResource ColorConverter}}" />
                 <Setter Property="Foreground" Value="White"/>
                 <Setter Property="Cursor" Value="Hand"/>
                 <Setter Property="FontSize" Value="18"/>
@@ -56,7 +61,7 @@
                             </Border>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsMouseOver" Value="true">
-                                    <Setter TargetName="Border" Property="Background" Value="#FF063212"/>
+                                    <Setter TargetName="Border" Property="Background" Value="{Binding Source={x:Static core:AppSettings.Default}, Mode=OneWay, Path=HeaderColor, Converter={StaticResource ColorConverter}}"/>
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>

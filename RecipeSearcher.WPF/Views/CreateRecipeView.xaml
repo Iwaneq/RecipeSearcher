@@ -8,9 +8,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WvxStarter.Wpf.Views"
              xmlns:converters="clr-namespace:RecipeSearcher.WPF.Converters"
+             xmlns:core ="clr-namespace:RecipeSearcher.Core;assembly=RecipeSearcher.Core"
              mc:Ignorable="d" FontSize="20"
-             d:DesignHeight="900" d:DesignWidth="800" Foreground="White" Background="#084519" Padding="20">
-    <DockPanel>
+             d:DesignHeight="900" d:DesignWidth="800" Foreground="White" Background="{Binding Source={x:Static core:AppSettings.Default}, Mode=OneWay, Path=ChildViewColor, Converter={StaticResource ColorConverter}}" Padding="20">
+    <DockPanel >
         <DockPanel.Resources>
             <converters:WPFImageSourceConverter x:Key="ImageSourceConverter"></converters:WPFImageSourceConverter>
         </DockPanel.Resources>
@@ -47,7 +48,7 @@
             </Button>
         </StackPanel>
 
-        <StackPanel DockPanel.Dock="Bottom" Background="#085c1f" Height="25" Margin="5,20,5,20">
+        <StackPanel DockPanel.Dock="Bottom" Background="{Binding Source={x:Static core:AppSettings.Default}, Mode=OneWay, Path=BottomPanelColor, Converter={StaticResource ColorConverter}}" Height="25" Margin="5,20,5,20">
 
         </StackPanel>
 
