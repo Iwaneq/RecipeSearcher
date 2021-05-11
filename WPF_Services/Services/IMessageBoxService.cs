@@ -1,4 +1,4 @@
-﻿namespace WPF_Services.Services
+﻿namespace PlatformServices.Services
 {
     public interface IMessageBoxService
     {

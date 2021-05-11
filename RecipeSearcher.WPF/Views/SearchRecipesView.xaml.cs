@@ -13,9 +13,6 @@ using System.Windows.Media.Imaging;
 
 namespace WvxStarter.Wpf.Views
 {
-    /// <summary>
-    /// Logika interakcji dla klasy GuestBookView.xaml
-    /// </summary>
     public partial class SearchRecipesView : MvxWpfView
     {
 

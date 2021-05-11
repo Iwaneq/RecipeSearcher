@@ -26,9 +26,6 @@
         </Grid>
 
         <ItemsControl ItemsSource="{Binding Recipes.Meals}">
-            <ItemsControl.Resources>
-                <converters:WPFImageSourceConverter x:Key="ImageSourceConverter"></converters:WPFImageSourceConverter>
-            </ItemsControl.Resources>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Background="{Binding Source={x:Static core:AppSettings.Default}, Mode=OneWay, Path=BottomPanelColor, Converter={StaticResource ColorConverter}}" Width="200" Height="250" Margin="5" MouseDown="Panel_MouseDown">

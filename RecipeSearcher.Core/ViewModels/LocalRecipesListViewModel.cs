@@ -1,7 +1,6 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 using RecipeLibrary.Models;
-using RecipeSearcher.Core.ReportModels;
 using RecipeSearcher.Core.Services;
 using System;
 using System.Collections.Generic;
@@ -12,8 +11,7 @@ namespace RecipeSearcher.Core.ViewModels
 {
     public class LocalRecipesListViewModel : MvxViewModel
     {
-        private readonly ISaveDataService _saveDataService;
-        private readonly MainViewModel _mainViewModel;
+        /*   PROPFULL'S   */
 
         private List<RecipeModelLite> _recipes = new List<RecipeModelLite>();
 
@@ -27,38 +25,45 @@ namespace RecipeSearcher.Core.ViewModels
             }
         }
 
+
+        /*   SERVICES AND VIEW MODELS   */
+
+        private readonly ISaveDataService _saveDataService;
+        private readonly MainViewModel _mainViewModel;
+
+        /*   COMMANDS   */
+
         public IMvxCommand LoadRecipeCommand { get; set; }
+
+        /*   CONSTRUCTOR   */
 
         public LocalRecipesListViewModel(ISaveDataService saveDataService, MainViewModel mainViewModel)
         {
+            //Services and ViewModels
             _saveDataService = saveDataService;
             _mainViewModel = mainViewModel;
 
+            //Commands
             LoadRecipeCommand = new MvxAsyncCommand<RecipeModelLite>(LoadRecipe);
         }
 
-        public override async Task Initialize()
+        public async Task ReloadRecipes()
         {
             Recipes.Clear();
 
-            Progress<LocalRecipesReportModel> progress = new Progress<LocalRecipesReportModel>();
-            progress.ProgressChanged += ReportProgress;
+            Progress<string> progress = new Progress<string>();
+            progress.ProgressChanged += ProgressReport;
 
             Recipes = await Task.Run(() =>_saveDataService.LoadRecipes(progress));
 
-            await ClearProgressText();
+            await Task.Run(() => _mainViewModel.ClearProgressText());
         }
 
-        private void ReportProgress(object sender, LocalRecipesReportModel e)
+        private void ProgressReport(object sender, string e)
         {
-            _mainViewModel.ProgressText = $"Loading recipes - {e.LoadingPrecentage}% completed.";
+            _mainViewModel.ProgressText = e;
         }
 
-        private async Task ClearProgressText()
-        {
-            await Task.Delay(8000);
-            _mainViewModel.ProgressText = "";
-        }
         public async Task LoadRecipe(RecipeModelLite r)
         {
             var recipe = await _saveDataService.LoadRecipe(r.LocalPath);

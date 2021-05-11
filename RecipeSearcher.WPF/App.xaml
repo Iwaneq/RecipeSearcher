@@ -12,6 +12,7 @@
         <ResourceDictionary>
             
             <convert:WPFColorConverter x:Key="ColorConverter"></convert:WPFColorConverter>
+            <convert:WPFImageSourceConverter x:Key="ImageSourceConverter"></convert:WPFImageSourceConverter>
             
             <Style x:Key="NavButton" TargetType="ToggleButton">
                 <Setter Property="Height" Value="50" />

@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace WPF_Services.Services
+namespace PlatformServices.Services
 {
     public class WPFMessageBoxService : IMessageBoxService
     {

@@ -15,10 +15,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <DockPanel Height="auto" Width="auto"
                LastChildFill="True">
-        <DockPanel.Resources>
-            <convert:WPFColorConverter x:Key="ColorConverter"></convert:WPFColorConverter>
-        </DockPanel.Resources>
-        <!--TOP NAVIGATION-->
+        <!--   HEADER   -->
         <Grid Height="50" DockPanel.Dock="Top"
                     Background="{Binding Source={x:Static core:AppSettings.Default}, Mode=OneWay, Path=HeaderColor, Converter={StaticResource ColorConverter}}">
             <Grid.ColumnDefinitions>
@@ -33,7 +30,8 @@
             </Button>
             
         </Grid>
-
+        
+        <!--   BOTTOM PANEL   -->
         <StackPanel DockPanel.Dock="Bottom" Height="40" Background="{Binding Source={x:Static core:AppSettings.Default}, Mode=OneWay, Path=BottomPanelColor, Converter={StaticResource ColorConverter}}">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -59,6 +57,7 @@
             </Grid>
         </StackPanel>
 
+        <!--   NAVIGATION   -->
         <StackPanel Width="140" Background="{Binding Source={x:Static core:AppSettings.Default}, Mode=OneWay, Path=NavigationColor, Converter={StaticResource ColorConverter}}" Height="auto">
             <ToggleButton Style="{StaticResource NavButton}" x:Name="recipesListButton"
                     Cursor="Hand" Click="navigationButton_Click" mvx:Bi.nd="Command OpenViewModelCommand" CommandParameter="LocalRecipes">Recipes</ToggleButton>
@@ -70,6 +69,7 @@
             </ToggleButton>
         </StackPanel>
 
+        <!--   CHILD VIEW PANEL   -->
         <ScrollViewer VerticalScrollBarVisibility="Auto" Background="{Binding Source={x:Static core:AppSettings.Default}, Mode=OneWay, Path=ChildViewColor, Converter={StaticResource ColorConverter}}">
             <ContentControl x:Name="currChild" Content="{Binding ChildViewModel}">
                 

@@ -17,21 +17,19 @@ using MvvmCross.Commands;
 
 namespace WvxStarter.Wpf.Views
 {
-    /// <summary>
-    /// Logika interakcji dla klasy GuestBookView.xaml
-    /// </summary>
     public partial class SettingsView : MvxWpfView
     {
+        /*   COMMANDS   */
 
-        public IMvxCommand<string> ChangeThemeColorCommand
+        public IMvxAsyncCommand<string> ChangeThemeColorCommand
         {
-            get { return (IMvxCommand<string>)GetValue(ChangeThemeColorCommandProperty); }
+            get { return (IMvxAsyncCommand<string>)GetValue(ChangeThemeColorCommandProperty); }
             set { SetValue(ChangeThemeColorCommandProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for ChangeThemeColorCommand.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ChangeThemeColorCommandProperty =
-            DependencyProperty.Register("ChangeThemeColorCommand", typeof(IMvxCommand<string>), typeof(SettingsView), new PropertyMetadata(null));
+            DependencyProperty.Register("ChangeThemeColorCommand", typeof(IMvxAsyncCommand<string>), typeof(SettingsView), new PropertyMetadata(null));
 
 
 

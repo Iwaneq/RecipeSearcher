@@ -12,9 +12,6 @@
              mc:Ignorable="d" FontSize="20"
              d:DesignHeight="900" d:DesignWidth="800" Foreground="White" Background="{Binding Source={x:Static core:AppSettings.Default}, Mode=OneWay, Path=ChildViewColor, Converter={StaticResource ColorConverter}}" Padding="20">
     <DockPanel >
-        <DockPanel.Resources>
-            <converters:WPFImageSourceConverter x:Key="ImageSourceConverter"></converters:WPFImageSourceConverter>
-        </DockPanel.Resources>
         <StackPanel DockPanel.Dock="Top" Height="100">
             <Grid>
                 <Grid.ColumnDefinitions>

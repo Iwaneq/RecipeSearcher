@@ -1,13 +1,15 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.ViewModels;
+using PlatformServices.Services;
 using RecipeLibrary.Models;
 using RecipeSearcher.Core.Services;
-using WPF_Services.Services;
+using System.Threading.Tasks;
 
 namespace RecipeSearcher.Core.ViewModels
 {
     public class MainViewModel : MvxViewModel
     {
+        /*   PROPFULL'S   */
 
         private string _progressText;
 
@@ -21,19 +23,14 @@ namespace RecipeSearcher.Core.ViewModels
             }
         }
 
-
-        public IMvxCommand<string> OpenViewModelCommand { get; set; }
-
-        private bool reloadManually = AppSettings.Default.IsManuallyReloadingRecipes;
+        /*   SERVICES AND VIEW MODELS   */
 
         private readonly MvxViewModel _searchRecipesViewModel;
         private readonly MvxViewModel _createRecipeViewModel;
-        private readonly MvxViewModel _localRecipesViewModel;
         private readonly MvxViewModel _settingsViewModel;
+        private readonly LocalRecipesListViewModel _localRecipesViewModel;
+
         private MvxViewModel _childViewModel;
-
-        private ISaveDataService _saveDataService;
-
         public MvxViewModel ChildViewModel
         {
             get { return _childViewModel; }
@@ -44,18 +41,43 @@ namespace RecipeSearcher.Core.ViewModels
             }
         }
 
+        private ISaveDataService _saveDataService;
+
+        /*   COMMANDS   */
+
+        public IMvxCommand<string> OpenViewModelCommand { get; set; }
+
+        /*   SETTINGS VARIABLES   */
+
+        private bool reloadManually = AppSettings.Default.IsManuallyReloadingRecipes;
+
+
+        /*   CONSTRUCTOR   */
+
         public MainViewModel(IMessageBoxService messageBoxService, ISaveDataService saveDataService, IColorThemeChanger colorThemeChanger)
         {
+            //ViewModels and Services
             _searchRecipesViewModel = new SearchRecipesViewModel(this, messageBoxService);
             _createRecipeViewModel = new CreateRecipeViewModel(messageBoxService, saveDataService, this);
             _localRecipesViewModel = new LocalRecipesListViewModel(saveDataService, this);
             _settingsViewModel = new SettingsViewModel(saveDataService, this, colorThemeChanger);
-            _localRecipesViewModel.Initialize();
 
-            OpenViewModelCommand = new MvxCommand<string>(OpenViewModel);
             _saveDataService = saveDataService;
+
+            //Loading local recipes at application start
+            Task.Run(() => _localRecipesViewModel.ReloadRecipes());
+
+            //Commands
+            OpenViewModelCommand = new MvxCommand<string>(OpenViewModel);
         }
 
+        public async Task ClearProgressText()
+        {
+            await Task.Delay(8000);
+            ProgressText = "";
+        }
+
+        //Updates type of local recipes reload for app
         public void UpdateReloadType()
         {
             reloadManually = AppSettings.Default.IsManuallyReloadingRecipes;
@@ -65,6 +87,7 @@ namespace RecipeSearcher.Core.ViewModels
         {
             switch (parameter)
             {
+                //Every case updates ChildViewModel and DownButton
                 case "SearchRecipes":
                     ChildViewModel = _searchRecipesViewModel;
                     UpdateDownButton(DownButton.Null);
@@ -75,10 +98,11 @@ namespace RecipeSearcher.Core.ViewModels
                     UpdateDownButton(DownButton.Null);
                     break;
 
+                //If recipes reloading isn't manually, then reload every time user open a LocalRecipesListViewModel and don't show DownButton
                 case "LocalRecipes":
                     if (!reloadManually)
                     {
-                        _localRecipesViewModel.Initialize();
+                        Task.Run(() => _localRecipesViewModel.ReloadRecipes());
                         UpdateDownButton(DownButton.Null);
                     }
                     else
@@ -109,7 +133,7 @@ namespace RecipeSearcher.Core.ViewModels
         }
 
 
-        /* DOWN BUTTON PROPFULL'S */
+        /*   DOWN BUTTON   */
 
         enum DownButton
         {
@@ -148,6 +172,7 @@ namespace RecipeSearcher.Core.ViewModels
                 case DownButton.Null:
                     DownButtonText = "";
                     break;
+
                 case DownButton.ReloadRecipes:
                     DownButtonText = "Reload recipes";
                     DownButtonCommand = new MvxCommand(ReloadRecipes);
@@ -157,7 +182,7 @@ namespace RecipeSearcher.Core.ViewModels
 
         private void ReloadRecipes()
         {
-            _localRecipesViewModel.Initialize();
+            Task.Run(() => _localRecipesViewModel.ReloadRecipes());
         }
     }
 }

@@ -1,14 +1,17 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.ViewModels;
+using PlatformServices.Services;
 using RecipeLibrary.Models;
 using RecipeSearcher.Core.Services;
 using System;
-using WPF_Services.Services;
+using System.Threading.Tasks;
 
 namespace RecipeSearcher.Core.ViewModels
 {
     public class CreateRecipeViewModel : MvxViewModel
     {
+        /*   PROPFULL'S   */
+
         private LocalRecipeModel _recipe = new LocalRecipeModel();
 
         public LocalRecipeModel Recipe
@@ -21,17 +24,27 @@ namespace RecipeSearcher.Core.ViewModels
             }
         }
 
+        /*   SERVICES AND VIEW MODELS   */
+
         private MainViewModel _mainViewModel;
         private readonly IMessageBoxService _messageBox;
         private readonly ISaveDataService _saveDataService;
+
+        /*   COMMANDS   */
+
         public IMvxCommand SaveRecipeCommand { get; set; }
+
+
+        /*   CONSTRUCTOR   */
 
         public CreateRecipeViewModel(IMessageBoxService messageBoxService, ISaveDataService saveDataService, MainViewModel mainViewModel)
         {
+            //Models and services
             _messageBox = messageBoxService;
             _saveDataService = saveDataService;
             _mainViewModel = mainViewModel;
 
+            //Commands
             SaveRecipeCommand = new MvxCommand(SaveRecipe);
         }
 
@@ -45,6 +58,8 @@ namespace RecipeSearcher.Core.ViewModels
                 _saveDataService.SaveRecipe(Recipe, progress);
                 Recipe = new LocalRecipeModel();
             }
+
+            Task.Run(() => _mainViewModel.ClearProgressText());
         }
 
         private void ReportProgress(object sender, string e)
@@ -52,6 +67,7 @@ namespace RecipeSearcher.Core.ViewModels
             _mainViewModel.ProgressText = e;
         }
 
+        //Checking if user completed every field
         private bool ValidateRecipe()
         {
             if (Recipe.Name.Length == 0)

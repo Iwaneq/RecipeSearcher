@@ -8,6 +8,7 @@ namespace RecipeSearcher.Core.ViewModels
 {
     public class LocalRecipeViewModel : MvxViewModel
     {
+        /*   PROPFULL'S   */
         private LocalRecipeModel _recipe;
 
         public LocalRecipeModel Recipe
@@ -16,7 +17,7 @@ namespace RecipeSearcher.Core.ViewModels
             set { _recipe = value; }
         }
 
-
+        /*   CONSTRUCTOR   */
         public LocalRecipeViewModel(LocalRecipeModel recipe)
         {
             Recipe = recipe;

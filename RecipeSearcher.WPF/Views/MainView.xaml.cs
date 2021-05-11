@@ -14,6 +14,8 @@ namespace WvxStarter.Wpf.Views
             InitializeComponent();
         }
 
+        //Setting Navigation Button's look
+        //If first NavigationButton is checked and another NavigationButton was clicked, then uncheck first button
         private void navigationButton_Click(object sender, RoutedEventArgs e)
         {
             if (currButton != null && currButton != sender)
@@ -28,6 +30,7 @@ namespace WvxStarter.Wpf.Views
             currButton = (ToggleButton)sender;
         }
 
+        //Unchecking Current NavigationButton after clicking SettingsButton
         private void settingsButton_Click(object sender, RoutedEventArgs e)
         {
             if(currButton != null)

@@ -7,9 +7,8 @@ using System.Text;
 using RecipeLibrary.Models;
 using System.Threading.Tasks;
 using MvvmCross;
-using WPF_Services.Services;
 using System.Drawing.Imaging;
-using RecipeSearcher.Core.ReportModels;
+using PlatformServices.Services;
 
 namespace RecipeSearcher.Core.Services
 {
@@ -45,10 +44,9 @@ namespace RecipeSearcher.Core.Services
             progress.Report("Recipe saved.");
         }
 
-        public async Task<List<RecipeModelLite>> LoadRecipes(IProgress<LocalRecipesReportModel> progress)
+        public async Task<List<RecipeModelLite>> LoadRecipes(IProgress<string> progress)
         {
             List<RecipeModelLite> output = new List<RecipeModelLite>();
-            LocalRecipesReportModel report = new LocalRecipesReportModel();
 
             var folders = Directory.GetDirectories(Path);
 
@@ -74,8 +72,8 @@ namespace RecipeSearcher.Core.Services
                     }
 
                     output.Add(recipe);
-                    report.LoadingPrecentage = (output.Count * 100) / folders.Length;
-                    progress.Report(report);
+
+                    progress.Report($"{output.Count * 100 / folders.Length}% recipes loaded");
                 }
             }
             

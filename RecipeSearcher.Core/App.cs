@@ -1,8 +1,8 @@
 ﻿using MvvmCross;
 using MvvmCross.ViewModels;
+using PlatformServices.Services;
 using RecipeSearcher.Core.Services;
 using RecipeSearcher.Core.ViewModels;
-using WPF_Services.Services;
 
 namespace RecipeSearcher.Core
 {

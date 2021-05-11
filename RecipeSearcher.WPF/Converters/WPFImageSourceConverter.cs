@@ -45,8 +45,6 @@ namespace RecipeSearcher.WPF.Converters
 
                 case System.Drawing.Imaging.PixelFormat.Format32bppRgb:
                     return PixelFormats.Bgr32;
-
-                    // .. as many as you need...
             }
             return new System.Windows.Media.PixelFormat();
         }

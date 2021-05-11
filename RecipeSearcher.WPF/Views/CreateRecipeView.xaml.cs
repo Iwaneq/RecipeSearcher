@@ -6,9 +6,6 @@ using System.Windows.Media.Imaging;
 
 namespace WvxStarter.Wpf.Views
 {
-    /// <summary>
-    /// Logika interakcji dla klasy GuestBookView.xaml
-    /// </summary>
     public partial class CreateRecipeView : MvxWpfView
     {
         public CreateRecipeView()
@@ -33,6 +30,7 @@ namespace WvxStarter.Wpf.Views
             }
         }
 
+        //Browse photo method
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog();

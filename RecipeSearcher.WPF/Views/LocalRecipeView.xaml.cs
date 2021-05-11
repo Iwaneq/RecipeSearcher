@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 
 namespace WvxStarter.Wpf.Views
 {
-    /// <summary>
-    /// Logika interakcji dla klasy GuestBookView.xaml
-    /// </summary>
     public partial class LocalRecipeView : MvxWpfView
     {
         public LocalRecipeView()

@@ -20,13 +20,9 @@ using System.Windows.Shapes;
 
 namespace WvxStarter.Wpf.Views
 {
-    /// <summary>
-    /// Logika interakcji dla klasy GuestBookView.xaml
-    /// </summary>
     public partial class LocalRecipesListView : MvxWpfView
     {
-
-
+        /*   COMMANDS   */
         public IMvxCommand LoadRecipeCommand
         {
             get { return (IMvxCommand)GetValue(LoadRecipeCommandProperty); }
@@ -36,8 +32,6 @@ namespace WvxStarter.Wpf.Views
         // Using a DependencyProperty as the backing store for LoadRecipeCommand.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty LoadRecipeCommandProperty =
             DependencyProperty.Register("LoadRecipeCommand", typeof(IMvxCommand), typeof(LocalRecipesListView), new PropertyMetadata(null));
-
-
 
         public LocalRecipesListView()
         {
