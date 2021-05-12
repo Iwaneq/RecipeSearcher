@@ -8,7 +8,7 @@ namespace RecipeSearcher.Core.ViewModels
 {
     public class LocalRecipeViewModel : MvxViewModel
     {
-        /*   PROPFULL'S   */
+        /*   PROPFULLS   */
         private LocalRecipeModel _recipe;
 
         public LocalRecipeModel Recipe
