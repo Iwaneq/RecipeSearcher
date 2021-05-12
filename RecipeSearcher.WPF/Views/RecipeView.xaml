@@ -34,7 +34,7 @@
             </Grid>
         </StackPanel>
 
-        <StackPanel DockPanel.Dock="Bottom" Margin="0,20,0,0">
+        <StackPanel DockPanel.Dock="Bottom">
             <Button Width="250" mvx:Bi.nd="Command SaveRecipeCommand">SAVE THIS RECIPE</Button>
         </StackPanel>
 

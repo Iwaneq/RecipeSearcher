@@ -71,7 +71,7 @@ namespace RecipeSearcher.Core.ViewModels
             _mainViewModel.ProgressText = "Settings have been saved";
 
             //Clear ProgressText
-            Task.Run(() => _mainViewModel.ClearProgressText());
+            await Task.Run(() => _mainViewModel.ClearProgressText());
         }
 
         private void UpdateSettingsInViewModels()

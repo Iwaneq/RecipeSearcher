@@ -11,7 +11,7 @@ namespace RecipeSearcher.Core.ViewModels
 {
     public class LocalRecipesListViewModel : MvxViewModel
     {
-        /*   PROPFULLS   */
+        /*   PROPFULL'S   */
 
         private List<RecipeModelLite> _recipes = new List<RecipeModelLite>();
 
