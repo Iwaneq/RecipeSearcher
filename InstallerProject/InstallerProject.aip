@@ -36,47 +36,41 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
     <ROW Component="APPDIR" ComponentId="{26FD4095-E732-4B9F-A2C5-BC519587B13D}" Directory_="APPDIR" Attributes="0"/>
-    <ROW Component="MvvmCross.Platforms.Wpf.dll" ComponentId="{1BFE51F5-8C1F-4461-8704-E37CCB51C652}" Directory_="APPDIR" Attributes="0" KeyPath="MvvmCross.Platforms.Wpf.dll"/>
-    <ROW Component="MvvmCross.dll" ComponentId="{789291DD-2253-4B8E-AF77-68D6FF6F255C}" Directory_="APPDIR" Attributes="0" KeyPath="MvvmCross.dll"/>
-    <ROW Component="Newtonsoft.Json.Bson.dll" ComponentId="{0FCF5A57-C198-45DD-854A-E6DE7DEA7433}" Directory_="APPDIR" Attributes="0" KeyPath="Newtonsoft.Json.Bson.dll"/>
-    <ROW Component="Newtonsoft.Json.dll" ComponentId="{84CC3116-05F4-4BC1-A59F-27A1EC6F6A25}" Directory_="APPDIR" Attributes="0" KeyPath="Newtonsoft.Json.dll"/>
+    <ROW Component="MvvmCross.Platforms.Wpf.dll" ComponentId="{4D41A9BC-A8C8-45CF-9DDD-7CA833E89DAF}" Directory_="APPDIR" Attributes="0" KeyPath="MvvmCross.Platforms.Wpf.dll"/>
+    <ROW Component="MvvmCross.dll" ComponentId="{9DCE830A-896C-4E01-AA71-F3121DF957D4}" Directory_="APPDIR" Attributes="0" KeyPath="MvvmCross.dll"/>
+    <ROW Component="Newtonsoft.Json.Bson.dll" ComponentId="{1626BE57-307C-4488-9BD9-068F7C36ACA2}" Directory_="APPDIR" Attributes="0" KeyPath="Newtonsoft.Json.Bson.dll"/>
+    <ROW Component="Newtonsoft.Json.dll" ComponentId="{73B6CF8B-77E4-4516-A048-52BFC914EBAC}" Directory_="APPDIR" Attributes="0" KeyPath="Newtonsoft.Json.dll"/>
+    <ROW Component="PlatformServices.dll" ComponentId="{B5938C2D-31EC-4BF3-8056-4DD5233D54BB}" Directory_="APPDIR" Attributes="0" KeyPath="PlatformServices.dll"/>
     <ROW Component="ProductInformation" ComponentId="{1F954570-39A2-400E-BC89-5CB3490716D2}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
-    <ROW Component="RecipeAppLibrary.pdb" ComponentId="{3536433E-3DB6-4C48-A781-0D2763703095}" Directory_="APPDIR" Attributes="0" KeyPath="RecipeAppLibrary.dll"/>
-    <ROW Component="RecipeLibrary.dll" ComponentId="{1B265C57-24CC-47EE-89EF-0C77D122DE01}" Directory_="APPDIR" Attributes="0" KeyPath="RecipeLibrary.dll"/>
-    <ROW Component="RecipeSearcher.Core.dll" ComponentId="{421C890E-DD79-4181-A60B-7B0EF35EDBA6}" Directory_="APPDIR" Attributes="0" KeyPath="RecipeSearcher.Core.dll"/>
-    <ROW Component="RecipeSearcher.WPF.deps.json" ComponentId="{D62F83EF-6E58-45DB-8DB8-D6B9D7F14893}" Directory_="APPDIR" Attributes="0" KeyPath="RecipeSearcher.WPF.deps.json" Type="0"/>
-    <ROW Component="RecipeSearcher.WPF.dll" ComponentId="{FD942689-34DC-447B-897F-23AF9A7A7F3B}" Directory_="APPDIR" Attributes="0" KeyPath="RecipeSearcher.WPF.dll"/>
-    <ROW Component="RecipeSearcher.WPF.dll_1" ComponentId="{35A733D9-5C43-483B-AD49-E5D79395913F}" Directory_="ref_Dir" Attributes="0" KeyPath="RecipeSearcher.WPF.dll_1"/>
-    <ROW Component="RecipeSearcher.WPF.exe" ComponentId="{237038A4-50D0-43D8-9BEB-41B228BB484A}" Directory_="APPDIR" Attributes="256" KeyPath="RecipeSearcher.WPF.exe"/>
+    <ROW Component="RecipeAppLibrary.dll" ComponentId="{FF8CFB86-09CC-47B4-A1ED-C11171482365}" Directory_="APPDIR" Attributes="0" KeyPath="RecipeAppLibrary.dll"/>
+    <ROW Component="RecipeLibrary.dll" ComponentId="{223119C9-7DB8-4987-A7F6-16C6FCA64CC0}" Directory_="APPDIR" Attributes="0" KeyPath="RecipeLibrary.dll"/>
+    <ROW Component="RecipeSearcher.Core.pdb" ComponentId="{B38A9B06-B812-4781-945E-0AEB16BF862A}" Directory_="APPDIR" Attributes="0" KeyPath="RecipeSearcher.Core.dll"/>
+    <ROW Component="RecipeSearcher.WPF.deps.json" ComponentId="{33D9B885-438B-4249-BD4F-B8ADD7F296A6}" Directory_="APPDIR" Attributes="0" KeyPath="RecipeSearcher.WPF.deps.json" Type="0"/>
+    <ROW Component="RecipeSearcher.WPF.dll" ComponentId="{F7376EC4-8230-4850-ADC3-90C18EDDDBFF}" Directory_="APPDIR" Attributes="0" KeyPath="RecipeSearcher.WPF.dll"/>
+    <ROW Component="RecipeSearcher.WPF.dll_1" ComponentId="{B698C68F-E26A-40E9-938B-050E7F703FAB}" Directory_="ref_Dir" Attributes="0" KeyPath="RecipeSearcher.WPF.dll_1"/>
+    <ROW Component="RecipeSearcher.WPF.exe" ComponentId="{A3AC9FD4-4185-44BB-938D-214D55DF8090}" Directory_="APPDIR" Attributes="256" KeyPath="RecipeSearcher.WPF.exe"/>
     <ROW Component="SHORTCUTDIR" ComponentId="{21F8D479-9BE7-45A6-97F1-81624BCB3481}" Directory_="SHORTCUTDIR" Attributes="0"/>
-    <ROW Component="SixLabors.ImageSharp.dll" ComponentId="{88FEF5D0-A554-4AAB-944D-90F472B25804}" Directory_="APPDIR" Attributes="0" KeyPath="SixLabors.ImageSharp.dll"/>
-    <ROW Component="System.Drawing.Common.dll" ComponentId="{367D2B04-6FD3-4379-869A-E537ED880DC0}" Directory_="APPDIR" Attributes="0" KeyPath="System.Drawing.Common.dll"/>
-    <ROW Component="System.Drawing.Common.dll_1" ComponentId="{1304C061-28DA-4AD3-88FB-62676223DB2E}" Directory_="netcoreapp3.0_Dir" Attributes="0" KeyPath="System.Drawing.Common.dll_1"/>
-    <ROW Component="System.Drawing.Common.dll_2" ComponentId="{FFE6F7A7-7039-45F7-99E5-67381B86B396}" Directory_="netcoreapp3.0_1_Dir" Attributes="0" KeyPath="System.Drawing.Common.dll_2"/>
-    <ROW Component="System.Net.Http.Formatting.dll" ComponentId="{6D57E24F-2461-4C1B-8EBE-43CE0BAE0C5B}" Directory_="APPDIR" Attributes="0" KeyPath="System.Net.Http.Formatting.dll"/>
-    <ROW Component="WPF_Services.dll" ComponentId="{0763967F-3BC7-4B70-B6F5-107BCB43EDE3}" Directory_="APPDIR" Attributes="0" KeyPath="WPF_Services.dll"/>
+    <ROW Component="SixLabors.ImageSharp.dll" ComponentId="{A3FDEC98-2F45-440C-8B1E-BBE2F7AD617C}" Directory_="APPDIR" Attributes="0" KeyPath="SixLabors.ImageSharp.dll"/>
+    <ROW Component="System.Drawing.Common.dll" ComponentId="{C0B51EBA-2C7A-4A3A-91E0-19AEFEA32C25}" Directory_="APPDIR" Attributes="0" KeyPath="System.Drawing.Common.dll"/>
+    <ROW Component="System.Drawing.Common.dll_1" ComponentId="{B2E74076-A9EF-4CC3-A6D0-E0437A212FE5}" Directory_="netcoreapp3.0_Dir" Attributes="0" KeyPath="System.Drawing.Common.dll_1"/>
+    <ROW Component="System.Drawing.Common.dll_2" ComponentId="{0DC3E1F6-929D-41B6-AB4F-35AFA4483127}" Directory_="netcoreapp3.0_1_Dir" Attributes="0" KeyPath="System.Drawing.Common.dll_2"/>
+    <ROW Component="System.Net.Http.Formatting.dll" ComponentId="{E8AE07F1-4351-4B61-ABDF-9A3FADF74B5C}" Directory_="APPDIR" Attributes="0" KeyPath="System.Net.Http.Formatting.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
     <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0"/>
     <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
-    <ROW File="RecipeAppLibrary.pdb" Component_="RecipeAppLibrary.pdb" FileName="RECIPE~1.PDB|RecipeAppLibrary.pdb" Attributes="0" SourcePath="..\RecipeSearcher.WPF\bin\Release\net5.0-windows\RecipeAppLibrary.pdb" SelfReg="false"/>
-    <ROW File="RecipeLibrary.dll" Component_="RecipeLibrary.dll" FileName="RECIPE~1.DLL|RecipeLibrary.dll" Attributes="0" SourcePath="..\RecipeSearcher.WPF\bin\Release\net5.0-windows\RecipeLibrary.dll" SelfReg="false"/>
-    <ROW File="RecipeLibrary.pdb" Component_="RecipeLibrary.dll" FileName="RECIPE~2.PDB|RecipeLibrary.pdb" Attributes="0" SourcePath="..\RecipeSearcher.WPF\bin\Release\net5.0-windows\RecipeLibrary.pdb" SelfReg="false"/>
-    <ROW File="RecipeSearcher.Core.dll" Component_="RecipeSearcher.Core.dll" FileName="RECIPE~2.DLL|RecipeSearcher.Core.dll" Attributes="0" SourcePath="..\RecipeSearcher.WPF\bin\Release\net5.0-windows\RecipeSearcher.Core.dll" SelfReg="false"/>
-    <ROW File="RecipeSearcher.Core.pdb" Component_="RecipeSearcher.Core.dll" FileName="RECIPE~3.PDB|RecipeSearcher.Core.pdb" Attributes="0" SourcePath="..\RecipeSearcher.WPF\bin\Release\net5.0-windows\RecipeSearcher.Core.pdb" SelfReg="false"/>
+    <ROW File="RecipeSearcher.Core.pdb" Component_="RecipeSearcher.Core.pdb" FileName="RECIPE~1.PDB|RecipeSearcher.Core.pdb" Attributes="0" SourcePath="..\RecipeSearcher.WPF\bin\Release\net5.0-windows\RecipeSearcher.Core.pdb" SelfReg="false"/>
     <ROW File="RecipeSearcher.WPF.deps.json" Component_="RecipeSearcher.WPF.deps.json" FileName="RECIPE~1.JSO|RecipeSearcher.WPF.deps.json" Attributes="0" SourcePath="..\RecipeSearcher.WPF\bin\Release\net5.0-windows\RecipeSearcher.WPF.deps.json" SelfReg="false"/>
-    <ROW File="RecipeSearcher.WPF.dll" Component_="RecipeSearcher.WPF.dll" FileName="RECIPE~3.DLL|RecipeSearcher.WPF.dll" Attributes="0" SourcePath="..\RecipeSearcher.WPF\bin\Release\net5.0-windows\RecipeSearcher.WPF.dll" SelfReg="false"/>
+    <ROW File="RecipeSearcher.WPF.dll" Component_="RecipeSearcher.WPF.dll" FileName="RECIPE~1.DLL|RecipeSearcher.WPF.dll" Attributes="0" SourcePath="..\RecipeSearcher.WPF\bin\Release\net5.0-windows\RecipeSearcher.WPF.dll" SelfReg="false"/>
     <ROW File="RecipeSearcher.WPF.exe" Component_="RecipeSearcher.WPF.exe" FileName="RECIPE~1.EXE|RecipeSearcher.WPF.exe" Attributes="0" SourcePath="..\RecipeSearcher.WPF\bin\Release\net5.0-windows\RecipeSearcher.WPF.exe" SelfReg="false" DigSign="true"/>
-    <ROW File="RecipeSearcher.WPF.pdb" Component_="RecipeSearcher.WPF.exe" FileName="RECIPE~4.PDB|RecipeSearcher.WPF.pdb" Attributes="0" SourcePath="..\RecipeSearcher.WPF\bin\Release\net5.0-windows\RecipeSearcher.WPF.pdb" SelfReg="false"/>
+    <ROW File="RecipeSearcher.WPF.pdb" Component_="RecipeSearcher.WPF.exe" FileName="RECIPE~2.PDB|RecipeSearcher.WPF.pdb" Attributes="0" SourcePath="..\RecipeSearcher.WPF\bin\Release\net5.0-windows\RecipeSearcher.WPF.pdb" SelfReg="false"/>
     <ROW File="RecipeSearcher.WPF.runtimeconfig.dev.json" Component_="RecipeSearcher.WPF.deps.json" FileName="RECIPE~2.JSO|RecipeSearcher.WPF.runtimeconfig.dev.json" Attributes="0" SourcePath="..\RecipeSearcher.WPF\bin\Release\net5.0-windows\RecipeSearcher.WPF.runtimeconfig.dev.json" SelfReg="false"/>
     <ROW File="RecipeSearcher.WPF.runtimeconfig.json" Component_="RecipeSearcher.WPF.deps.json" FileName="RECIPE~3.JSO|RecipeSearcher.WPF.runtimeconfig.json" Attributes="0" SourcePath="..\RecipeSearcher.WPF\bin\Release\net5.0-windows\RecipeSearcher.WPF.runtimeconfig.json" SelfReg="false"/>
     <ROW File="SixLabors.ImageSharp.dll" Component_="SixLabors.ImageSharp.dll" FileName="SIXLAB~1.DLL|SixLabors.ImageSharp.dll" Attributes="0" SourcePath="..\RecipeSearcher.WPF\bin\Release\net5.0-windows\SixLabors.ImageSharp.dll" SelfReg="false"/>
     <ROW File="System.Drawing.Common.dll" Component_="System.Drawing.Common.dll" FileName="SYSTEM~1.DLL|System.Drawing.Common.dll" Attributes="0" SourcePath="..\RecipeSearcher.WPF\bin\Release\net5.0-windows\System.Drawing.Common.dll" SelfReg="false"/>
     <ROW File="System.Net.Http.Formatting.dll" Component_="System.Net.Http.Formatting.dll" FileName="SYSTEM~2.DLL|System.Net.Http.Formatting.dll" Attributes="0" SourcePath="..\RecipeSearcher.WPF\bin\Release\net5.0-windows\System.Net.Http.Formatting.dll" SelfReg="false"/>
-    <ROW File="WPF_Services.dll" Component_="WPF_Services.dll" FileName="WPF_SE~1.DLL|WPF_Services.dll" Attributes="0" SourcePath="..\RecipeSearcher.WPF\bin\Release\net5.0-windows\WPF_Services.dll" SelfReg="false"/>
-    <ROW File="WPF_Services.pdb" Component_="WPF_Services.dll" FileName="WPF_SE~1.PDB|WPF_Services.pdb" Attributes="0" SourcePath="..\RecipeSearcher.WPF\bin\Release\net5.0-windows\WPF_Services.pdb" SelfReg="false"/>
     <ROW File="RecipeSearcher.WPF.dll_1" Component_="RecipeSearcher.WPF.dll_1" FileName="RECIPE~1.DLL|RecipeSearcher.WPF.dll" Attributes="0" SourcePath="..\RecipeSearcher.WPF\bin\Release\net5.0-windows\ref\RecipeSearcher.WPF.dll" SelfReg="false"/>
     <ROW File="System.Drawing.Common.dll_1" Component_="System.Drawing.Common.dll_1" FileName="SYSTEM~1.DLL|System.Drawing.Common.dll" Attributes="0" SourcePath="..\RecipeSearcher.WPF\bin\Release\net5.0-windows\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll" SelfReg="false"/>
     <ROW File="System.Drawing.Common.dll_2" Component_="System.Drawing.Common.dll_2" FileName="SYSTEM~1.DLL|System.Drawing.Common.dll" Attributes="0" SourcePath="..\RecipeSearcher.WPF\bin\Release\net5.0-windows\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll" SelfReg="false"/>
@@ -84,8 +78,14 @@
     <ROW File="MvvmCross.Platforms.Wpf.dll" Component_="MvvmCross.Platforms.Wpf.dll" FileName="MVVMCR~2.DLL|MvvmCross.Platforms.Wpf.dll" Attributes="0" SourcePath="..\RecipeSearcher.WPF\bin\Release\net5.0-windows\MvvmCross.Platforms.Wpf.dll" SelfReg="false"/>
     <ROW File="Newtonsoft.Json.Bson.dll" Component_="Newtonsoft.Json.Bson.dll" FileName="NEWTON~1.DLL|Newtonsoft.Json.Bson.dll" Attributes="0" SourcePath="..\RecipeSearcher.WPF\bin\Release\net5.0-windows\Newtonsoft.Json.Bson.dll" SelfReg="false"/>
     <ROW File="Newtonsoft.Json.dll" Component_="Newtonsoft.Json.dll" FileName="NEWTON~2.DLL|Newtonsoft.Json.dll" Attributes="0" SourcePath="..\RecipeSearcher.WPF\bin\Release\net5.0-windows\Newtonsoft.Json.dll" SelfReg="false"/>
-    <ROW File="RecipeAppLibrary.dll" Component_="RecipeAppLibrary.pdb" FileName="RECIPE~4.DLL|RecipeAppLibrary.dll" Attributes="0" SourcePath="..\RecipeSearcher.WPF\bin\Release\net5.0-windows\RecipeAppLibrary.dll" SelfReg="false"/>
+    <ROW File="PlatformServices.dll" Component_="PlatformServices.dll" FileName="PLATFO~1.DLL|PlatformServices.dll" Attributes="0" SourcePath="..\RecipeSearcher.WPF\bin\Release\net5.0-windows\PlatformServices.dll" SelfReg="false"/>
+    <ROW File="PlatformServices.pdb" Component_="PlatformServices.dll" FileName="PLATFO~1.PDB|PlatformServices.pdb" Attributes="0" SourcePath="..\RecipeSearcher.WPF\bin\Release\net5.0-windows\PlatformServices.pdb" SelfReg="false"/>
+    <ROW File="RecipeAppLibrary.dll" Component_="RecipeAppLibrary.dll" FileName="RECIPE~2.DLL|RecipeAppLibrary.dll" Attributes="0" SourcePath="..\RecipeSearcher.WPF\bin\Release\net5.0-windows\RecipeAppLibrary.dll" SelfReg="false"/>
     <ROW File="RecipeAppLibrary.dll.config" Component_="RecipeSearcher.WPF.deps.json" FileName="RECIPE~1.CON|RecipeAppLibrary.dll.config" Attributes="0" SourcePath="..\RecipeSearcher.WPF\bin\Release\net5.0-windows\RecipeAppLibrary.dll.config" SelfReg="false"/>
+    <ROW File="RecipeAppLibrary.pdb" Component_="RecipeAppLibrary.dll" FileName="RECIPE~3.PDB|RecipeAppLibrary.pdb" Attributes="0" SourcePath="..\RecipeSearcher.WPF\bin\Release\net5.0-windows\RecipeAppLibrary.pdb" SelfReg="false"/>
+    <ROW File="RecipeLibrary.dll" Component_="RecipeLibrary.dll" FileName="RECIPE~3.DLL|RecipeLibrary.dll" Attributes="0" SourcePath="..\RecipeSearcher.WPF\bin\Release\net5.0-windows\RecipeLibrary.dll" SelfReg="false"/>
+    <ROW File="RecipeLibrary.pdb" Component_="RecipeLibrary.dll" FileName="RECIPE~4.PDB|RecipeLibrary.pdb" Attributes="0" SourcePath="..\RecipeSearcher.WPF\bin\Release\net5.0-windows\RecipeLibrary.pdb" SelfReg="false"/>
+    <ROW File="RecipeSearcher.Core.dll" Component_="RecipeSearcher.Core.pdb" FileName="RECIPE~4.DLL|RecipeSearcher.Core.dll" Attributes="0" SourcePath="..\RecipeSearcher.WPF\bin\Release\net5.0-windows\RecipeSearcher.Core.dll" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BootstrOptComponent">
     <ROW BootstrOptKey="GlobalOptions" DownloadFolder="[AppDataFolder][|Manufacturer]\[|ProductName]\prerequisites" Options="2"/>
@@ -159,16 +159,13 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatCompsComponent">
     <ROW Feature_="MainFeature" Component_="APPDIR"/>
     <ROW Feature_="MainFeature" Component_="ProductInformation"/>
-    <ROW Feature_="MainFeature" Component_="RecipeAppLibrary.pdb"/>
-    <ROW Feature_="MainFeature" Component_="RecipeLibrary.dll"/>
-    <ROW Feature_="MainFeature" Component_="RecipeSearcher.Core.dll"/>
+    <ROW Feature_="MainFeature" Component_="RecipeSearcher.Core.pdb"/>
     <ROW Feature_="MainFeature" Component_="RecipeSearcher.WPF.deps.json"/>
     <ROW Feature_="MainFeature" Component_="RecipeSearcher.WPF.dll"/>
     <ROW Feature_="MainFeature" Component_="RecipeSearcher.WPF.exe"/>
     <ROW Feature_="MainFeature" Component_="SixLabors.ImageSharp.dll"/>
     <ROW Feature_="MainFeature" Component_="System.Drawing.Common.dll"/>
     <ROW Feature_="MainFeature" Component_="System.Net.Http.Formatting.dll"/>
-    <ROW Feature_="MainFeature" Component_="WPF_Services.dll"/>
     <ROW Feature_="MainFeature" Component_="RecipeSearcher.WPF.dll_1"/>
     <ROW Feature_="MainFeature" Component_="System.Drawing.Common.dll_1"/>
     <ROW Feature_="MainFeature" Component_="System.Drawing.Common.dll_2"/>
@@ -177,6 +174,9 @@
     <ROW Feature_="MainFeature" Component_="MvvmCross.Platforms.Wpf.dll"/>
     <ROW Feature_="MainFeature" Component_="Newtonsoft.Json.Bson.dll"/>
     <ROW Feature_="MainFeature" Component_="Newtonsoft.Json.dll"/>
+    <ROW Feature_="MainFeature" Component_="PlatformServices.dll"/>
+    <ROW Feature_="MainFeature" Component_="RecipeAppLibrary.dll"/>
+    <ROW Feature_="MainFeature" Component_="RecipeLibrary.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="cookie.exe" SourcePath="..\..\..\..\..\..\ProgramGraphics\cookie.ico" Index="0"/>

@@ -9,7 +9,7 @@ namespace RecipeSearcher.Core.ViewModels
 {
     public class MainViewModel : MvxViewModel
     {
-        /*   PROPFULL'S   */
+        /*   PROPFULLS   */
 
         private string _progressText;
 
